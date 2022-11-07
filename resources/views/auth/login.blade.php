@@ -1,9 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg/1200px-Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg.png" height="100px" width="100px" alt="">
         </x-slot>
 
         <!-- Session Status -->

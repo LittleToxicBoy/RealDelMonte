@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [PageController::class, 'checarSession'])->name('home');
+
+Route::get('/inicio', function(){
     return view('inicio.index');
-});
+})->name('inicio');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

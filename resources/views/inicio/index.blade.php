@@ -1,5 +1,5 @@
 @extends('layouts.template')
 
 @section('content')
-    s
+   a
 @endsection
