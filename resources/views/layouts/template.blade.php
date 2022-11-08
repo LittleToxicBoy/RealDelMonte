@@ -19,6 +19,10 @@
     <link href="{{ asset('argonTemplate/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('argonTemplate/css/argon-dashboard.css') }}" rel="stylesheet" />
+
+    <!-- MAPA LEAFLET -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 </head>
 
 <body class="g-sidenav-show dark-version bg-gray-600">
@@ -36,7 +40,7 @@
         @livewire('fix.footer')
     </main>
 
-    
+
 
     <!--   Core JS Files   -->
     <script src="{{ asset('argonTemplate/js/core/popper.min.js') }}"></script>

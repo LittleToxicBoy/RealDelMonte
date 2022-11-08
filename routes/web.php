@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'checarSession'])->name('home');
 
+Route::get('/lugares', function () {
+    return view('administrar.lugares');
+})->middleware(['auth'])->name('lugares');
+
 Route::get('/inicio', function(){
     return view('inicio.index');
 })->name('inicio');

@@ -1,0 +1,39 @@
+.td {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.celdaAsignado {
+    word-break: break-all !important;
+    white-space: nowrap !important;
+    width: 200px !important;
+}
+
+.celdaAsignado h6 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btnHeaderT {
+    margin: 0;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.map{
+    height: 300px;
+    width: 100%;
+}
+
+.colorLabel{
+    color: #051139 !important;
+}
