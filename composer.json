@@ -7,15 +7,15 @@
     "require": {
         "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
-        "google/cloud-firestore": "^1.26",
         "guzzlehttp/guzzle": "^7.0.1",
-        "kreait/laravel-firebase": "*",
+        "intervention/image": "^2.7",
         "laravel/breeze": "1.9.4",
         "laravel/framework": "^8.75",
         "laravel/jetstream": "^2.9",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "superbalist/laravel-google-cloud-storage": "^2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

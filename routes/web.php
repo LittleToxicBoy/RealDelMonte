@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Imagen\SubirImagen;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +40,6 @@ Route::get('/insert', function () {
         'age' => '19'
     ]);
 });
-
-Route::get('/imagen', [SubirImagen::class, 'subir'])->name('uploadImage');
-
-require __DIR__ . '/auth.php';
+Route::get("/eventos", function(){
+    return view('administrar.eventos');
+})->middleware(['auth'])->name('eventos');
