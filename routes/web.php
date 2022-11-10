@@ -43,6 +43,6 @@ Route::get("/eventos", function(){
 
 require __DIR__.'/auth.php';
 
-Route::get('/imagen', [SubirImagen::class, 'subir'])->name('uploadImage');
+Route::post('/imagen', [SubirImagen::class, 'subir'])->name('uploadImage');
 
 require __DIR__ . '/auth.php';

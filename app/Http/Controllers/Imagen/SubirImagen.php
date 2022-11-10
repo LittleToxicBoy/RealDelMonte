@@ -4,33 +4,34 @@ namespace App\Http\Controllers\Imagen;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SubirImagen extends Controller
 {
     public function subir(Request $request)
     {
-        $Event = request()->except('_token');
-        if ($request->hasFile('imagen')) {
-            $Event['imagen'] = $request->file('imagen')->store('/uploads', 'public');
-        }
-        
-        $imagen = $request->file('imagen');
-        echo $Event['imagen'];
+        // dd($request->file('imagen'));
+        echo pathinfo($request->file('imagen')->orifin, PATHINFO_EXTENSION);;
+        // $storage = app('firebase.storage'); // This is an instance of Google\Cloud\Storage\StorageClient from kreait/firebase-php library
+        // $defaultBucket = $storage->getBucket();
+        // $image = $request->file('image');
 
-        $storage = app('firebase.storage');
+        // $extension = pathinfo($image, PATHINFO_EXTENSION);
+        // $name = (string) Str::uuid().".".$extension; // use Illuminate\Support\Str;
+        // echo $extension;
 
-        $uploadedObject = $storage
-            ->getBucket()
-            ->upload($imagen, [
-                'name' => '2.jpg'
-            ]);
+        // $pathName = $image->getPathName();
+        // $file = fopen($pathName, 'r');
+        // $object = $defaultBucket->upload($file, [
+        //      'name' => $name,
+        //      'predefinedAcl' => 'publicRead'
+        // ]);
+        // $image_url = 'https://storage.googleapis.com/'.env('FIREBASE_PROJECT_ID').'.appspot.com/'.$name;
 
-        $expiresAt = new \DateTime('tomorrow');
-
-       // echo $uploadedObject->signedUrl($expiresAt) . PHP_EOL;
+        // echo $uploadedObject->signedUrl($expiresAt) . PHP_EOL;
 
         // Direct access
-       // echo $storage->getBucket()->object('test.jpg')->signedUrl($expiresAt);
+        // echo $storage->getBucket()->object('test.jpg')->signedUrl($expiresAt);
 
         // $image = $request->imagen; //image file from frontend  
         // $student   = app('firebase.firestore')->database()->collection('Student')->newDocument();
