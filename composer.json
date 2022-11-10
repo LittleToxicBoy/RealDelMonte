@@ -9,13 +9,15 @@
         "fruitcake/laravel-cors": "^2.0",
         "google/cloud-firestore": "^1.26",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.7",
         "kreait/laravel-firebase": "*",
         "laravel/breeze": "1.9.4",
         "laravel/framework": "^8.75",
         "laravel/jetstream": "^2.9",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "superbalist/laravel-google-cloud-storage": "^2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
