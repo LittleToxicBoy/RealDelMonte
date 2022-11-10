@@ -79,7 +79,7 @@
                                 <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Aceptar</button>
                             </div>
                         </form>
-                        <form action="{{ route('uploadImage') }}">
+                        <form enctype="multipart/form-data" method="POST" action="{{ route('uploadImage') }}">
                             @csrf
                             <input type="file" name="imagen" id="imagen">
 
