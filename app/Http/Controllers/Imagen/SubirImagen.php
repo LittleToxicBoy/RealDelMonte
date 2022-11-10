@@ -8,25 +8,29 @@ use Illuminate\Http\Request;
 class SubirImagen extends Controller
 {
     public function subir(Request $request)
-    {   
-        $Event=request()->except('_token');
-        dd($Event);
-        // $imagen = $request->imagen;
-        // $storage = app('firebase.storage');
-        // $imageFile = file_get_contents($request);
+    {
+        $Event = request()->except('_token');
+        if ($request->hasFile('imagen')) {
+            $Event['imagen'] = $request->file('imagen')->store('/uploads', 'public');
+        }
+        
+        $imagen = $request->file('imagen');
+        echo $Event['imagen'];
 
-        // $uploadedObject = $storage
-        //     ->getBucket()
-        //     ->upload($imageFile, [
-        //         'name' => '2.jpg'
-        //     ]);
+        $storage = app('firebase.storage');
 
-        // $expiresAt = new \DateTime('tomorrow');
+        $uploadedObject = $storage
+            ->getBucket()
+            ->upload($imagen, [
+                'name' => '2.jpg'
+            ]);
 
-        // echo $uploadedObject->signedUrl($expiresAt) . PHP_EOL;
+        $expiresAt = new \DateTime('tomorrow');
 
-        // // Direct access
-        // echo $storage->getBucket()->object('test.jpg')->signedUrl($expiresAt);
+       // echo $uploadedObject->signedUrl($expiresAt) . PHP_EOL;
+
+        // Direct access
+       // echo $storage->getBucket()->object('test.jpg')->signedUrl($expiresAt);
 
         // $image = $request->imagen; //image file from frontend  
         // $student   = app('firebase.firestore')->database()->collection('Student')->newDocument();
