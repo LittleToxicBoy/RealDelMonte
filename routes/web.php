@@ -28,4 +28,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get("/eventos", function(){
+    return view('administrar.eventos');
+})->middleware(['auth'])->name('eventos');
+
 require __DIR__.'/auth.php';
