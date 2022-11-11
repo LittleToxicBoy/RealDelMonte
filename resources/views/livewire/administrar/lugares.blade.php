@@ -6,6 +6,7 @@
                 <button type="button" class="btn btn-success btnHeaderT" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
             </div>
         </div>
+        <!-- <div class="map" id="map"></div> -->
         <div class="table-responsive">
             <table class="table align-items-center ">
                 <thead>
