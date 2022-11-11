@@ -117,23 +117,4 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/administrar/mapa.js') }}"></script>
-    <!-- <script>
-        $(document).on('click', '#agregarNegocio', function() {
-            setTimeout(() => {
-                imprimirMapa();
-            }, 500);
-        })
-
-        function imprimirMapa() {
-            var map = L.map('map').setView([20.140942279396675, -98.67247509395506], 50);
-
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            L.marker([20.140400237443167, -98.67514560769588]).addTo(map)
-                .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-                .openPopup();
-        }
-    </script> -->
 </div>
