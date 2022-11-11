@@ -22,6 +22,13 @@ class CreateLugaresTable extends Migration
             $table->string('img1');
             $table->string('img2');
             $table->string('img3');
+            $table->string('img4');
+            $table->string('img5');
+            $table->string('img6');
+            $table->string('img7');
+            $table->string('img8');
+            $table->string('img9');
+            $table->string('img10');
 
             //FK 
             $table->unsignedBigInteger('idPueblo');
