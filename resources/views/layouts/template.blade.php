@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('argonTemplate/img/apple-icon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('argonTemplate/img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg/1200px-Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg.png">
     <title>
-        Argon Dashboard 2 by Creative Tim
+        Dashboard RealDelMonte
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
