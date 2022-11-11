@@ -20,6 +20,10 @@ Route::get('/lugares', function () {
     return view('administrar.lugares');
 })->middleware(['auth'])->name('lugares');
 
+Route::get('/negocios', function () {
+    return view('administrar.negocios');
+})->middleware(['auth'])->name('negocios');
+
 Route::get('/inicio', function () {
     return view('inicio.index');
 })->name('inicio');
