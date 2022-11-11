@@ -22,9 +22,7 @@ function imprimirMapa() {
             map.removeLayer(marker); // remove
         }
         marker = new L.Marker(e.latlng).addTo(map); // set
-        console.log(e.latlng.lat);
-        console.log(e.latlng.lng);
-        document.getElementById("latitud").value = e.latlng.lat;
-        document.getElementById("longitud").value = e.latlng.lng;
+        Livewire.emit('getLatitudeForInput',e.latlng.lat);
+        Livewire.emit('getLongitudeForInput',e.latlng.lng);
     });
 }

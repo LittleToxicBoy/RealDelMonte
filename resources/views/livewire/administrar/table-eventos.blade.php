@@ -40,57 +40,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <label style="color: black !important;">
-                            <p class="m-0">Nombre</p>
-                        </label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Casa abandonada">
-                        </div>
-
-                        <label style="color: black !important;">
-                            <p class="m-0">Descripcion</p>
-                        </label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Descripcion">
-                        </div>
-
-                        <label style="color: black !important;">
-                            <p class="m-0">Comienzo</p>
-                        </label>
-                        <div class="input-group mb-3">
-                            <input type="date" class="form-control">
-                        </div>
-
-                        <label style="color: black !important;">
-                            <p class="m-0">Termino</p>
-                        </label>
-                        <div class="input-group mb-3">
-                            <input type="date" class="form-control">
-                        </div>
-
-                        <label style="color: black !important;">
-                            <p class="m-0">Imagenes (Se necesitan 3 imagenes)</p>
-                        </label>
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control">
-                        </div>
-
-                        <label style="color: black !important;">
-                            <p class="m-0">Localizacion del lugar</p>
-                        </label>
-
-                        <div style="height: 180px;" id="map">
-
-                        </div>
-
-
-                        <input type="text" hidden id="latitud"  value="">
-                        <input type="text" hidden id="longitud"  value="">
-
-                        <div class="text-center">
-                            <button type="button"
-                                class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Aceptar</button>
-                        </div>
+                       @livewire('eventos-form')
                     </div>
                 </div>
             </div>
