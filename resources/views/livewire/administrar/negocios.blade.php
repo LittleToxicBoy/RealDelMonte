@@ -8,7 +8,7 @@
         <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 50px !important;">
             <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Lugares</h6>
-                <button type="button" id="agregarNegocio" class="btn btn-success btnHeaderT" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+                <button type="button" id="openModal" class="btn btn-success btnHeaderT" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
             </div>
         </div>
         <!-- <div class="map" id="map"></div> -->
@@ -85,6 +85,25 @@
                                 <input type="text" class="form-control" placeholder="Descripcion">
                             </div>
 
+                            <div class="d-flex gap-3">
+                                <div>
+                                    <label style="color: black !important;">
+                                        <p class="m-0">Latitud</p>
+                                    </label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="latitud" class="form-control" placeholder="" readonly>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="color: black !important;">
+                                        <p class="m-0">Logintud</p>
+                                    </label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="longitud" class="form-control" placeholder="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="text-center">
                                 <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Aceptar</button>
                             </div>
@@ -97,7 +116,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script>
+    <script src="{{ asset('js/administrar/mapa.js') }}"></script>
+    <!-- <script>
         $(document).on('click', '#agregarNegocio', function() {
             setTimeout(() => {
                 imprimirMapa();
@@ -115,5 +135,5 @@
                 .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
                 .openPopup();
         }
-    </script>
+    </script> -->
 </div>

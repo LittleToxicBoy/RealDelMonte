@@ -6,7 +6,7 @@ $(document).on("click", "#openModal", function () {
 
 function imprimirMapa() {
     var map = L.map("map").setView(
-        [20.144833067269186, -98.67368866148045],
+        [20.14024166748934, -98.67254608536996],
         30
     );
 
