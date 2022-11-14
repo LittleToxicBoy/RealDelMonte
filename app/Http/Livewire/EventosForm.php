@@ -66,6 +66,8 @@ class EventosForm extends Component
         }
         Eventos::create($eventData);
         $this->cleanVars();
+        $this->emit('refreshEventos');
+        $this->dispatchBrowserEvent('closeModal');
     }
 
     protected function cleanVars(){
