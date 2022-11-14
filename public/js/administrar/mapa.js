@@ -25,4 +25,11 @@ function imprimirMapa() {
         Livewire.emit('getLatitudeForInput',e.latlng.lat);
         Livewire.emit('getLongitudeForInput',e.latlng.lng);
     });
+
+
 }
+
+
+window.addEventListener('closeModal', event => {
+    $('#exampleModal').modal('hide');
+})

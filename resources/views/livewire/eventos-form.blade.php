@@ -78,4 +78,8 @@
         <button type="button" wire:click="createEvento"
             class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Aceptar</button>
     </div>
+
+    <div wire:loading wire:target="createEvento" class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
 </div>

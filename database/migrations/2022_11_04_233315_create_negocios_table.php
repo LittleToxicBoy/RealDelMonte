@@ -31,7 +31,6 @@ class CreateNegociosTable extends Migration
             $table->string('img8')->nullable();
             $table->string('img9')->nullable();
             $table->string('img10')->nullable();
-
             $table->unsignedBigInteger('idUser');
             $table->foreign('idUser')->references('id')->on('users');
 

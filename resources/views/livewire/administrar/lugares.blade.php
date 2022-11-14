@@ -18,33 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="w-30">
-                            <div class="d-flex px-2 py-1 align-items-center justify-conten-center">
-                                <div style="display: flex; justify-content: center; width: -webkit-fill-available">
-                                    <img src="https://i.pinimg.com/236x/f8/ec/7a/f8ec7af110cc2af730f9ff294b8df70f.jpg" height="80px" width="80px" alt="Country flag">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-center">
-                                <h6 class="text-sm mb-0">Estatua mamona de cobre</h6>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="td">
-                                <div class="celdaAsignado">
-                                    <h6 class="text-sm mb-0 ">Calle san geronimo con cruzada la casa de las margaritas</h6>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-info m-0"><i class="ni ni-settings"></i></button>
-                                <button class="btn btn-danger m-0">X</button>
-                            </div>
-                        </td>
-                    </tr>
+
 
                 </tbody>
             </table>
