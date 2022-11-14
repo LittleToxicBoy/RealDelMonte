@@ -6,6 +6,7 @@ use App\Http\Controllers\helpers\imageController;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Negocios;
+use App\Models\Restaurantes;
 
 class NegForm extends Component
 {
@@ -42,11 +43,25 @@ class NegForm extends Component
         'tipo' => 'required',
         'latitud' => 'required',
         'longitud' => 'required',
+        'imagenes' => 'required',
     ];
 
     public function submit()
     {
-        $this->validate();
+        if ($this->tipo == 'restaurante') {
+            $this->validate([
+                'imagenesDerivado' => 'required',
+                'nombre' => 'required',
+                'descripcion' => 'required',
+                'horario' => 'required',
+                'tipo' => 'required',
+                'latitud' => 'required',
+                'longitud' => 'required',
+                'imagenes' => 'required',
+            ]);
+        } else {
+            $this->validate();
+        }
 
         $imageController  =  new imageController();
         $nameAlt = strtolower(strtr($this->nombre, " ", "_"));
@@ -55,7 +70,7 @@ class NegForm extends Component
             'nombre' => $this->nombre,
             'latitud' => $this->latitud,
             'longitud' => $this->longitud,
-            'horarioDes'=> $this->horario,
+            'horarioDes' => $this->horario,
             'tipo' => $this->tipo,
             'descripcion' => $this->descripcion,
         ];
@@ -68,14 +83,33 @@ class NegForm extends Component
         }
 
         $nuevoNegocio = Negocios::create($eventData);
-        
+
+        if ($this->tipo == 'restaurante') {
+            $rImagen = [
+                'idNegocio' => $nuevoNegocio->id,
+            ];
+            if (!empty($this->imagenesDerivado)) {
+                $imageController  =  new imageController();
+                $nameAlt = strtolower(strtr($this->nombre, " ", "_"));
+                $folder = $nameAlt . '-menu-' . $this->tipo;
+                foreach ($this->imagenesDerivado as $key => $image) {
+                    $imageName = $nameAlt . '-' . $key;
+                    $url = $imageController->uploadImageGcs($image, $imageName, 'realdelmonte/negocios/restaurantes/' . $folder);
+                    $a = $key + 1;
+                    $index = 'img' . $a;
+                    $rImagen[$index] = $url;
+                }
+                Restaurantes::create($rImagen);
+            }
+        }
+
         // dd($this->nombre, $this->descripcion, $this->horario, $this->tipo, $this->imagenes, $this->latitud, $this->longitud, $this->imagenesDerivado);
     }
 
     public function render()
     {
         return view('livewire.administrar.neg-form', [
-            'tipo'=> $this->tipo,
+            'tipo' => $this->tipo,
         ]);
     }
 }

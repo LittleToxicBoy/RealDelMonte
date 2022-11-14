@@ -2,11 +2,13 @@
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
                     <h6 class="m-0" style="color: black !important;">Datos generales</h6 class="m-0">
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
 
                 <label style="color: black !important;">
                     <p class="m-0">Nombre</p>
@@ -15,9 +17,9 @@
                     <input type="text" wire:model="nombre" class="form-control" placeholder="Casa abandonada">
                 </div>
                 @error('nombre')
-                <div class="alert alert-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
                 @enderror
                 <label style="color: black !important;">
                     <p class="m-0">Descripcion</p>
@@ -26,9 +28,9 @@
                     <input type="text" wire:model="descripcion" class="form-control" placeholder="Descripcion">
                 </div>
                 @error('descripcion')
-                <div class="alert alert-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
                 @enderror
                 <div class="gridAjuste2">
                     <div>
@@ -56,14 +58,14 @@
                     </div>
                 </div>
                 @error('horario')
-                <div class="alert alert-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
                 @enderror
                 @error('tipo')
-                <div class="alert alert-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
                 @enderror
                 <div>
                     <label style="color: black !important;">
@@ -78,43 +80,55 @@
                         </div>
                     </div>
                 </div>
-
+                @error('imagenes')
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @enderror
 
                 <div class="d-flex gap-3">
                     <div>
                         <div class="input-group mb-3">
-                            <input type="text" wire:model="latitud" id="latitud" class="form-control" placeholder="" readonly hidden>
+                            <input type="text" wire:model="latitud" id="latitud" class="form-control"
+                                placeholder="" readonly hidden>
                         </div>
                     </div>
                     <div>
                         <div class="input-group mb-3">
-                            <input type="text" wire:model="longitud" id="longitud" class="form-control" placeholder="" readonly hidden>
+                            <input type="text" wire:model="longitud" id="longitud" class="form-control"
+                                placeholder="" readonly hidden>
                         </div>
                     </div>
                 </div>
                 @error('latitud')
-                <div class="alert alert-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
                 @enderror
                 @error('longitud')
-                <div class="alert alert-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
                 @enderror
 
                 @if ($tipo == 'restaurante')
-                <label style="color: black !important;">
-                    <p class="m-0" id="nombreDerivado">Imagenes menu del restaurante</p>
-                </label>
-                <div class="d-flex">
-                    <div class="input-group mb-3">
-                        <input type="file" wire:model="imagenesDerivado" class="form-control" multiple>
+                    <label style="color: black !important;">
+                        <p class="m-0" id="nombreDerivado">Imagenes menu del restaurante</p>
+                    </label>
+                    <div class="d-flex">
+                        <div class="input-group mb-3">
+                            <input type="file" wire:model="imagenesDerivado" class="form-control" multiple>
+                        </div>
+                        <div wire:loading wire:target="imagenesDerivado" class="spinner-border text-warning"
+                            role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
                     </div>
-                    <div wire:loading wire:target="imagenesDerivado" class="spinner-border text-warning" role="status">
-                        <span class="visually-hidden">Cargando...</span>
-                    </div>
-                </div>
+                    @error('imagenesDerivado')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
                 @endif
             </div>
         </div>
