@@ -32,7 +32,7 @@ class CreateNegociosTable extends Migration
             $table->string('img9')->nullable();
             $table->string('img10')->nullable();
 
-            $table->unsignedBigInteger('idUser');
+            $table->unsignedBigInteger('idUser')->nullable();
             $table->foreign('idUser')->references('id')->on('users');
 
             $table->timestamps();
