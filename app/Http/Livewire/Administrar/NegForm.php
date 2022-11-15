@@ -73,6 +73,7 @@ class NegForm extends Component
             'horarioDes' => $this->horario,
             'tipo' => $this->tipo,
             'descripcion' => $this->descripcion,
+            'idPueblo' => 1,
         ];
         foreach ($this->imagenes as $key => $image) {
             $imageName = $nameAlt . '-' . $key;
@@ -86,7 +87,7 @@ class NegForm extends Component
 
         if ($this->tipo == 'restaurante') {
             $rImagen = [
-                'idNegocio' => $nuevoNegocio->id,
+                'idNegocio' => $nuevoNegocio->idNegocio,
             ];
             if (!empty($this->imagenesDerivado)) {
                 $imageController  =  new imageController();
@@ -102,8 +103,20 @@ class NegForm extends Component
                 Restaurantes::create($rImagen);
             }
         }
-
+        
+        $this->clear();
+        $this->dispatchBrowserEvent('closeModal');
         // dd($this->nombre, $this->descripcion, $this->horario, $this->tipo, $this->imagenes, $this->latitud, $this->longitud, $this->imagenesDerivado);
+    }
+
+    public function clear()
+    {
+        $this->nombre = '';
+        $this->latitud = '';
+        $this->longitud = '';
+        $this->horario = '';
+        $this->tipo = '';
+        $this->descripcion = '';
     }
 
     public function render()

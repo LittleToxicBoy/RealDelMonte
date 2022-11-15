@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Negocios extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'idNegocio';
     protected $fillable = [
         'nombre',
         'latitud',
@@ -15,6 +16,7 @@ class Negocios extends Model
         'horarioDes',
         'tipo',
         'descripcion',
+        'idPueblo',
         'img1',
         'img2',
         'img3',
