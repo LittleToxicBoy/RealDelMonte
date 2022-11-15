@@ -51,8 +51,8 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <button wire:click="openEditModal({{ $evento }})" class="btn btn-info m-0"><i
-                                            class="ni ni-settings"></i></button>
+                                    <button wire:click="openEditModal({{ $evento }})"
+                                        class="btn openEditModal btn-info m-0"><i class="ni ni-settings"></i></button>
                                     <button wire:click="openDeleteModal({{ $evento->idEvento }})"
                                         class="btn btn-danger m-0"><i class="ni ni-fat-delete"></i></button>
                                 </div>
@@ -120,7 +120,8 @@
         <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" style="color:black !important;" id="modal-title-default">Editar Evento</h6>
+                    <h6 class="modal-title" style="color:black !important;" id="modal-title-default">Editar Evento
+                    </h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
