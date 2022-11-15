@@ -8,7 +8,8 @@
         <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 50px !important;">
             <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Lugares</h6>
-                <button type="button" id="openModal" class="btn btn-success btnHeaderT" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+                <button type="button" id="openModal" class="btn btn-success btnHeaderT" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">+</button>
             </div>
         </div>
         <!-- <div class="map" id="map"></div> -->
@@ -16,61 +17,75 @@
             <table class="table align-items-center ">
                 <thead>
                     <tr>
-                        <th class="text-center">Imagen</th>
                         <th class="text-center">Nombre</th>
-                        <th class="text-center">Direccion</th>
+                        <th class="text-center">Descripcion</th>
+                        <th class="text-center">Horario</th>
+                        <th class="text-center">Tipo</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="w-30">
-                            <div class="d-flex px-2 py-1 align-items-center justify-conten-center">
-                                <div style="display: flex; justify-content: center; width: -webkit-fill-available">
-                                    <img src="https://i.pinimg.com/236x/f8/ec/7a/f8ec7af110cc2af730f9ff294b8df70f.jpg" height="80px" width="80px" alt="Country flag">
+                    @foreach ($negocios as $negocio)
+                        <tr>
+                            <td>
+                                <div class="text-center">
+                                    <h6 class="text-sm mb-0">{{ $negocio->nombre }}</h6>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-center">
-                                <h6 class="text-sm mb-0">Estatua mamona de cobre</h6>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="td">
-                                <div class="celdaAsignado">
-                                    <h6 class="text-sm mb-0 ">Calle san geronimo con cruzada la casa de las margaritas</h6>
+                            </td>
+                            <td>
+                                <div class="td">
+                                    <div class="celdaAsignado">
+                                        <h6 class="text-sm mb-0 ">{{ $negocio->descripcion }}</h6>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-info m-0"><i class="ni ni-settings"></i></button>
-                                <button class="btn btn-danger m-0">X</button>
-                            </div>
-                        </td>
-                    </tr>
-
+                            </td>
+                            <td>
+                                <div class="td">
+                                    <div class="celdaAsignado">
+                                        <h6 class="text-sm mb-0 ">{{ $negocio->horarioDes }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <h6 class="text-sm mb-0">{{ $negocio->tipo }}</h6>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-info m-0"><i class="ni ni-settings"></i></button>
+                                    <button class="btn btn-danger m-0">X</button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+            {{ $negocios->links() }}
         </div>
     </div>
 
 
     <!-- Modal -->
     <div style="margin-left: 17.125rem;">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" style="color: #17202A !important;" id="exampleModalLabel">Agregar Lugar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: red !important;">
+                        <h5 class="modal-title" style="color: #17202A !important;" id="exampleModalLabel">Agregar Lugar
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="color: red !important;">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="map" id="map"></div>
-                        <livewire:administrar.neg-form/>
+                        <livewire:administrar.neg-form />
                     </div>
                 </div>
             </div>
@@ -81,10 +96,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/administrar/mapa.js') }}"></script>
     <script>
-        $(document).on('change', '#btnOptionTipoNegocio', function(){
-            if($(this).val() == 'restaurante'){
+        $(document).on('change', '#btnOptionTipoNegocio', function() {
+            if ($(this).val() == 'restaurante') {
                 $('#derivadoNegocio').show();
-            }else{
+            } else {
                 $('#derivadoNegocio').hide();
             }
         })

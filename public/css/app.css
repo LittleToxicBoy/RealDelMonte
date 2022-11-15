@@ -664,6 +664,17 @@ select {
     max-width: 1536px;
   }
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 .collapse {
   visibility: collapse;
 }
@@ -797,6 +808,9 @@ select {
 }
 .mt-5 {
   margin-top: 1.25rem;
+}
+.ml-auto {
+  margin-left: auto;
 }
 .block {
   display: block;
