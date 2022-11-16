@@ -105,6 +105,7 @@ class NegForm extends Component
         }
         
         $this->clear();
+        $this->emit('refreshEventos');
         $this->dispatchBrowserEvent('closeModal');
         // dd($this->nombre, $this->descripcion, $this->horario, $this->tipo, $this->imagenes, $this->latitud, $this->longitud, $this->imagenesDerivado);
     }
