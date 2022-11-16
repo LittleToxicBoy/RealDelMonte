@@ -41,8 +41,10 @@
         <p class="m-0">Localizacion del lugar</p>
     </label>
 
-    <div wire:ignore style="height: 180px;" id="map">
+    <div id="mapParent">
+        <div wire:ignore style="height: 180px;" id="map">
 
+        </div>
     </div>
 
 
@@ -81,5 +83,5 @@
 
     <div wire:loading wire:target="createEvento" class="spinner-border text-primary" role="status">
         <span class="sr-only">Loading...</span>
-      </div>
+    </div>
 </div>

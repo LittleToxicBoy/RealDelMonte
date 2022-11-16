@@ -34,41 +34,34 @@
         </div>
 
 
-        <div class="row">
-            <div class="col-8">
-                <label style="color: black !important;">
-                    <p class="m-0">Imagenes (10 imagenes maximo) </p>
-                </label>
-            </div>
-            <div class="col-4">
-                @if (count($images) < 10)
-                    <div class="image-upload">
-                        <label for="file-input2">
-                            <a style="width:100%;margin-left:5px;margin-right:5px" class="btn bg-success"><i
-                                    class="ni ni-fat-add"></i></a>
-                        </label>
-                        <input wire:model.defer="newImage"  id="file-input2" type="file" />
-                    </div>
-                @endif
-            </div>
-        </div>
-        <div wire:loading wire:target="newImage" class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        <div class="row">
-            @foreach ($images as $key => $image)
-                <div class="col-4">
-                    <div class="image-upload">
-                        <label for="file-input">
-                            <img class="img-thumbnail" src="{{ $image }}" />
-                        </label>
-                        <input wire:model="tempImages.'{{ $key }}'"
-                            wire:change="updateImage('{{ $key }}')" id="file-input" type="file" />
-                    </div>
-                </div>
-            @endforeach
-        </div>
+        <label style="color: black !important;">
+            <p class="m-0">Imagenes (10 imagenes maximo) </p>
+        </label>
+        @if ($images)
+            <div class="row">
 
+                <div class="col-4">
+                    <label for="input1">
+                        <img src="@if ($images['img1']) {{ $images['img1'] }} @else {{ $auxImage }} @endif"
+                            alt="" class="img-thumbnail">
+                    </label>
+                    <input wire:model="img1" type="file" hidden id="input1">
+                    <button wire:click.prevent="deleteImages('img1')" style="width:100%;"
+                        class="btn bg-danger">Eliminar</button>
+                </div>
+
+                <div class="col-4">
+                    <label for="input2">
+                        <img src="@if ($images['img2']) {{ $images['img2'] }} @else {{ $auxImage }} @endif"
+                            alt="" class="img-thumbnail">
+                    </label>
+                    <input wire:model="img2" type="file" hidden id="input2">
+                    <button wire:click.prevent="deleteImages('img2')" style="width:100%;"
+                        class="btn bg-danger">Eliminar</button>
+                </div>
+
+            </div>
+        @endif
         <label style="color: black !important;">
             <p class="m-0">Localizacion del lugar</p>
         </label>
