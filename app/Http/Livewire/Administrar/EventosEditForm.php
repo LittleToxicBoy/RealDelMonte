@@ -17,22 +17,48 @@ class EventosEditForm extends Component
     public $longitude;
     public $images = [];
     public $tempImages;
-    public $newImage;
+    public $img1;
+    public $img2;
+    public $img3;
+    public $img4;
+    public $img5;
+    public $img6;
+    public $img7;
+    public $img8;
+    public $img9;
+    public $img10;
+
+    public $auxImage = 'https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png';
+
     protected $listeners = [
         'updateValues' => 'updateValues',
         'setEditLatitude',
         'setEditLongitude',
     ];
 
+    public function updatedImg1($value)
+    {
+        $url = $this->images['img1'];
+        if ($url) {
+            dd("esta imagen debe ser actualizada");
+        } else {
+            dd("esta imagen debe ser creada");
+        }
+    }
+
+    public function updatedImg2($value)
+    {
+        $url = $this->images['img2'];
+        if ($url) {
+            dd("esta imagen debe ser actualizada");
+        } else {
+            dd("esta imagen debe ser creada");
+        }
+    }
+
     public function test()
     {
-        dd($this->newImage);
-    }
-    public function updatedNewImage()
-    {
-        $totalImages = count($this->images);
-        $index = $totalImages + 1;
-        $this->images[$index] = $this->newImage->temporaryUrl();
+        dd($this->tempImages->img1);
     }
 
     public function setEditLatitude($value)
@@ -61,17 +87,22 @@ class EventosEditForm extends Component
         $this->longitude = $evento['longitud'];
         for ($i = 0; $i < 10; $i++) {
             $index = 'img' . $i + 1;
-            if ($evento[$index] != null) {
-                $this->images[$index] = $evento[$index];
-            } else {
-                $i = 10;
-            }
+            $this->images[$index] = $evento[$index];
         }
     }
-    public function updateImage($key)
+
+
+    public function updatedTempImages($index, $key)
     {
-        dd($this->tempImages[$key]);
+        dd($index, $key);
     }
+
+    public function deleteImages($index)
+    {
+        dd($index, $this->images[$index]);
+    }
+
+
     public function render()
     {
         return view('livewire.administrar.eventos-edit-form');

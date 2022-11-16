@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('argonTemplate/img/apple-icon.png') }}">
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg/1200px-Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg.png">
+    <link rel="icon" type="image/png"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg/1200px-Logo_de_los_Pueblos_M%C3%A1gicos_de_M%C3%A9xico.svg.png">
     <title>
         Dashboard RealDelMonte
     </title>
@@ -19,7 +20,7 @@
     <link href="{{ asset('argonTemplate/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('argonTemplate/css/argon-dashboard.css') }}" rel="stylesheet" />
-
+    <link rel="stylesheet" href="{{ asset('css/admLugares.css') }}">
     <!-- MAPA LEAFLET -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
         integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
