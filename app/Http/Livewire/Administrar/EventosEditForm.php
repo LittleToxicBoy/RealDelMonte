@@ -18,7 +18,6 @@ class EventosEditForm extends Component
     public $latitude;
     public $longitude;
     public $images = [];
-    public $tempImages;
     public $img1;
     public $img2;
     public $img3;
@@ -29,9 +28,7 @@ class EventosEditForm extends Component
     public $img8;
     public $img9;
     public $img10;
-
     public $auxImage = 'https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png';
-
     protected $listeners = [
         'updateValues' => 'updateValues',
         'setEditLatitude',
@@ -95,6 +92,10 @@ class EventosEditForm extends Component
         $url = $this->images[$index];
         if ($url && $url != '' && $url !=null) {
             $imageController->updateImageGcs($url, $image);
+            $this->dispatchBrowserEvent("alert", [
+                "type" => "success",
+                "message" => "Imagen actualizada correctamente"
+            ]);
         } else {
             $nameAlt = strtolower(strtr($this->name, " ", "_"));
             $folder = $nameAlt . '-' . $this->dateStart;
@@ -105,6 +106,10 @@ class EventosEditForm extends Component
             $evento = Eventos::find($this->idEvento);
             $evento->$index = $url;
             $evento->save();
+            $this->dispatchBrowserEvent("alert", [
+                "type" => "success",
+                "message" => "Imagen creada correctamente"
+            ]);
         }
     }
 
@@ -128,6 +133,10 @@ class EventosEditForm extends Component
         $event->save();
         $this->emit('refreshEventos');
         $this->dispatchBrowserEvent('closeEditModal');
+        $this->dispatchBrowserEvent("alert", [
+            "type" => "success",
+            "message" => "Informacion actualizada correctamente"
+        ]);
     }
 
     public function setEditLatitude($value)
@@ -161,20 +170,26 @@ class EventosEditForm extends Component
     }
 
 
-    public function updatedTempImages($index, $key)
-    {
-        dd($index, $key);
-    }
 
     public function deleteImages($index)
     {
         if ($index == 'img1') {
-            dd("esta imagen no puede ser eliminada");
+            $this->dispatchBrowserEvent("alert", [
+                "type" => "warning",
+                "message" => "Esta imagen no puede ser eliminada"
+            ]);
         } else {
             $imagen = $this->images[$index];
             $imageController  =  new imageController();
             $imageController->deleteImageGcs($imagen);
             $this->images[$index] = null;
+            $evento = Eventos::find($this->idEvento);
+            $evento->$index = null;
+            $evento->save();
+            $this->dispatchBrowserEvent("alert", [
+                "type" => "warning",
+                "message" => "Imagen eliminada correctamente"
+            ]);
         }
     }
 

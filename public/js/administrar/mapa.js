@@ -37,7 +37,6 @@ function mapEdit() {
     var map2 = printMap("mapEditModal");
     const latitud = $("#latitudEdit").val();
     const longitud = $("#longitudEdit").val();
-    console.log(latitud, longitud);
     var marker2 = L.marker([latitud, longitud]).addTo(map2);
     map2.on("click", function (e) {
         if (marker2) {

@@ -10,6 +10,7 @@ class TableEventos extends Component
 {
     use WithPagination;
     public $actualId;
+    public $searchTerm = "";
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
         'refreshEventos' => '$refresh'
@@ -28,11 +29,21 @@ class TableEventos extends Component
             if ($evento) {
                 $this->dispatchBrowserEvent('closeDeleteModal');
                 $this->emit('refreshEventos');
+                $this->dispatchBrowserEvent("alert", [
+                    "type" => "success",
+                    "message" => "Evento eliminado correctamente"
+                ]);
             } else {
-                dd('Error al eliminar el evento');
+                $this->dispatchBrowserEvent("alert", [
+                    "type" => "warning",
+                    "message" => "Error al crear el evento"
+                ]);
             }
         } catch (\Exception $e) {
-            dd($e);
+            $this->dispatchBrowserEvent("alert", [
+                "type" => "warning",
+                "message" => "Error al crear el evento"
+            ]);
         }
     }
 
@@ -45,7 +56,17 @@ class TableEventos extends Component
 
     public function render()
     {
-        $eventos = Eventos::where('idPueblo', 1)->paginate(5);
+        $search = '%'.$this->searchTerm.'%';
+        $eventos = Eventos::where('idPueblo', 1)
+        ->where(function($query) use ($search){
+            $query->where('nombre', 'like', $search)
+            ->orWhere('descripcion', 'like', $search)
+            ->orWhere('fechaInicio', 'like', $search)
+            ->orWhere('fechaTermino', 'like', $search);
+        })
+        ->orderBy('fechaInicio', 'desc')
+        ->orderBy('fechaTermino','desc')
+        ->paginate(5);
         return view('livewire.administrar.table-eventos', [
             'eventos' => $eventos,
         ]);
