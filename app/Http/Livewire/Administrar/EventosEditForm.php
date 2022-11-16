@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Administrar;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Http\Controllers\helpers\imageController;
+use App\Models\Eventos;
 
 class EventosEditForm extends Component
 {
@@ -38,27 +40,94 @@ class EventosEditForm extends Component
 
     public function updatedImg1($value)
     {
-        $url = $this->images['img1'];
-        if ($url) {
-            dd("esta imagen debe ser actualizada");
-        } else {
-            dd("esta imagen debe ser creada");
-        }
+        $this->createUpdateImage($value, 'img1', 0);
     }
 
     public function updatedImg2($value)
     {
-        $url = $this->images['img2'];
-        if ($url) {
-            dd("esta imagen debe ser actualizada");
+        $this->createUpdateImage($value, 'img2', 1);
+    }
+
+    public function updatedImg3($value)
+    {
+        $this->createUpdateImage($value, 'img3', 2);
+    }
+
+    public function updatedImg4($value)
+    {
+        $this->createUpdateImage($value, 'img4', 3);
+    }
+
+    public function updatedImg5($value)
+    {
+        $this->createUpdateImage($value, 'img5', 4);
+    }
+
+    public function updatedImg6($value)
+    {
+        $this->createUpdateImage($value, 'img6', 5);
+    }
+
+    public function updatedImg7($value)
+    {
+        $this->createUpdateImage($value, 'img7', 6);
+    }
+
+    public function updatedImg8($value)
+    {
+        $this->createUpdateImage($value, 'img8', 7);
+    }
+
+    public function updatedImg9($value)
+    {
+        $this->createUpdateImage($value, 'img9', 8);
+    }
+
+    public function updatedImg10($value)
+    {
+        $this->createUpdateImage($value, 'img10', 9);
+    }
+
+
+    public function createUpdateImage($image, $index, $key)
+    {
+        $imageController  =  new imageController();
+        $url = $this->images[$index];
+        if ($url && $url != '' && $url !=null) {
+            $imageController->updateImageGcs($url, $image);
         } else {
-            dd("esta imagen debe ser creada");
+            $nameAlt = strtolower(strtr($this->name, " ", "_"));
+            $folder = $nameAlt . '-' . $this->dateStart;
+            $imageName = $nameAlt . '-' . $key;
+            $url = $imageController->uploadImageGcs($image, $imageName, 'realdelmonte/eventos/' . $folder);
+            $index = 'img' . $key + 1;
+            $this->images[$index] = $url;
+            $evento = Eventos::find($this->idEvento);
+            $evento->$index = $url;
+            $evento->save();
         }
     }
 
-    public function test()
+    public function updateInformation()
     {
-        dd($this->tempImages->img1);
+        $this->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'dateStart' => 'required',
+            'dateEnd' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+        $event = Eventos::find($this->idEvento);
+        $event->nombre = $this->name;
+        $event->descripcion = $this->description;
+        $event->fechaInicio = $this->dateStart;
+        $event->fechaTermino = $this->dateEnd;
+        $event->latitud = $this->latitude;
+        $event->longitud = $this->longitude;
+        $event->save();
+        $this->emit('refreshEventos');
+        $this->dispatchBrowserEvent('closeEditModal');
     }
 
     public function setEditLatitude($value)
@@ -99,7 +168,14 @@ class EventosEditForm extends Component
 
     public function deleteImages($index)
     {
-        dd($index, $this->images[$index]);
+        if ($index == 'img1') {
+            dd("esta imagen no puede ser eliminada");
+        } else {
+            $imagen = $this->images[$index];
+            $imageController  =  new imageController();
+            $imageController->deleteImageGcs($imagen);
+            $this->images[$index] = null;
+        }
     }
 
 
