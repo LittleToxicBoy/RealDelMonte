@@ -69,6 +69,10 @@ class EventosForm extends Component
         $this->cleanVars();
         $this->emit('refreshEventos');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent("alert", [
+            "type" => "success",
+            "message" => "Evento creado correctamente"
+        ]);
     }
 
     protected function cleanVars(){
