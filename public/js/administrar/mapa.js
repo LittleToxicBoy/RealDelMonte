@@ -9,7 +9,7 @@ window.addEventListener("closeModal", (event) => {
 });
 
 function mapInsert() {
-    document.getElementById("mapParent").innerHTML ='<div wire:ignore style="height: 180px;" id="map"></div>';
+    document.getElementById("mapParent").innerHTML ='<div wire:ignore style="height: 230px;" id="map"></div>';
     var map = printMap("map");
     var marker;
     map.on("click", function (e) {

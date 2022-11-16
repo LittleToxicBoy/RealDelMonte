@@ -1,9 +1,4 @@
 <div class="">
-    <style>
-        .map {
-            height: 300px;
-        }
-    </style>
     <div class="card ">
         <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 50px !important;">
             <div class="d-flex justify-content-between">
@@ -53,8 +48,10 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <button class="btn btn-info m-0"><i class="ni ni-settings"></i></button>
-                                    <button class="btn btn-danger m-0">X</button>
+                                    <button wire:click="asignarId({{ $negocio }}, 'editar')"
+                                        class="btn btn-info m-0"><i class="ni ni-settings"></i></button>
+                                    <button wire:click="asignarId({{ $negocio }}, 'eliminar')"
+                                        class="btn btn-danger m-0">X</button>
                                 </div>
                             </td>
                         </tr>
@@ -84,8 +81,91 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="map" id="map"></div>
+                        <div id="mapParent"></div>
+
                         <livewire:administrar.neg-form />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal ELIMINAR -->
+    <div style="margin-left: 17.125rem;">
+        <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color: #17202A !important;" id="exampleModalLabel">Eliminar
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="color: red !important;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="text-center" style="color: #17202A !important;">Deseas eliminar este negocio?</h5>
+                        <p class="text-center" style="color: #17202A !important;">Una vez realizado no se podra revertir
+                        </p>
+
+                        <div class="d-flex justify-content-center">
+                            <button wire:click="eliminar" class="btn btn-warning">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal EDITAR -->
+    <div style="margin-left: 17.125rem;">
+        <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color: #17202A !important;" id="exampleModalLabel">Administrar
+                            Negocio
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="color: red !important;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        <h6 style="color: #17202A !important;">Editar informacion del negocio</h6>
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                        <h6 style="color: #17202A !important;">Añadir </h6>
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,6 +182,20 @@
             } else {
                 $('#derivadoNegocio').hide();
             }
+        })
+
+        window.addEventListener('openDeleteModal', event => {
+            $('#modalEliminar').modal('show');
+        })
+        window.addEventListener('closeDeleteModal', event => {
+            $('#modalEliminar').modal('hide');
+        })
+
+        window.addEventListener('openAdmModal', event => {
+            $('#modalEditar').modal('show');
+        })
+        window.addEventListener('closeAdmModal', event => {
+            $('#modalEditar').modal('hide');
         })
     </script>
 </div>

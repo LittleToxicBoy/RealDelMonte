@@ -61,7 +61,8 @@ class EventosForm extends Component
         foreach ($this->images as $key => $image) {
             $imageName = $nameAlt . '-' . $key;
             $url = $imageController->uploadImageGcs($image, $imageName, 'realdelmonte/eventos/' . $folder);
-            $index = 'img' . $key + 1;
+            $a = $key + 1;
+            $index = 'img' . $a;
             $eventData[$index] = $url;
         }
         Eventos::create($eventData);
