@@ -11,7 +11,10 @@ class Negocios extends Component
     use WithPagination;
     public $actualId;
     protected $paginationTheme = 'bootstrap';
-
+    protected $listeners = [
+        'refreshEventos' => '$refresh'
+    ];
+    
     public function render()
     {
         $negocios = ModelsNegocios::where('idPueblo', 1)->paginate(5);
