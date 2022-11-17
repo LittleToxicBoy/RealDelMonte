@@ -5526,14 +5526,14 @@ fieldset:disabled .btn {
   --bs-pagination-border-color: #dee2e6;
   --bs-pagination-border-radius: 0.5rem;
   --bs-pagination-hover-color: #233dd2;
-  --bs-pagination-hover-bg: #e9ecef;
-  --bs-pagination-hover-border-color: #dee2e6;
+  --bs-pagination-hover-bg: #000000;
+  --bs-pagination-hover-border-color: #000000;
   --bs-pagination-focus-color: #233dd2;
   --bs-pagination-focus-bg: #e9ecef;
   --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(94, 114, 228, 0.25);
   --bs-pagination-active-color: #fff;
-  --bs-pagination-active-bg: #5e72e4;
-  --bs-pagination-active-border-color: #5e72e4;
+  --bs-pagination-active-bg: #050c2e;
+  --bs-pagination-active-border-color: #000000;
   --bs-pagination-disabled-color: #6c757d;
   --bs-pagination-disabled-bg: #fff;
   --bs-pagination-disabled-border-color: #dee2e6;
