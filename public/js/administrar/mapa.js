@@ -9,7 +9,8 @@ window.addEventListener("closeModal", (event) => {
 });
 
 function mapInsert() {
-    document.getElementById("mapParent").innerHTML ='<div wire:ignore style="height: 180px;" id="map"></div>';
+    document.getElementById("mapParent").innerHTML =
+        '<div wire:ignore style="height: 180px;" id="map"></div>';
     var map = printMap("map");
     var marker;
     map.on("click", function (e) {
@@ -33,7 +34,8 @@ window.addEventListener("closeEditModal", (event) => {
 });
 
 function mapEdit() {
-    document.getElementById("mapEditParent").innerHTML ='<div wire:ignore style="height: 180px;" id="mapEditModal"></div>';
+    document.getElementById("mapEditParent").innerHTML =
+        '<div wire:ignore style="height: 180px;" id="mapEditModal"></div>';
     var map2 = printMap("mapEditModal");
     const latitud = $("#latitudEdit").val();
     const longitud = $("#longitudEdit").val();
@@ -60,3 +62,17 @@ function printMap(name) {
     }).addTo(map);
     return map;
 }
+
+window.addEventListener("openDeleteModal", (event) => {
+    $("#modal-delete").modal("show");
+});
+window.addEventListener("closeDeleteModal", (event) => {
+    $("#modal-delete").modal("hide");
+});
+
+window.addEventListener("openEditModal", (event) => {
+    $("#modal-edit").modal("show");
+});
+window.addEventListener("closeEditModal", (event) => {
+    $("#modal-edit").modal("hide");
+});
