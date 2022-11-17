@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Administrar;
 use Livewire\Component;
 use App\Models\Eventos;
 use Livewire\WithPagination;
+use App\Http\Controllers\helpers\imageController;
 
 class TableEventos extends Component
 {
@@ -24,25 +25,23 @@ class TableEventos extends Component
 
     public function deleteEvento()
     {
-        try {
-            $evento = Eventos::find($this->actualId)->delete();
-            if ($evento) {
-                $this->dispatchBrowserEvent('closeDeleteModal');
-                $this->emit('refreshEventos');
-                $this->dispatchBrowserEvent("alert", [
-                    "type" => "success",
-                    "message" => "Evento eliminado correctamente"
-                ]);
-            } else {
-                $this->dispatchBrowserEvent("alert", [
-                    "type" => "warning",
-                    "message" => "Error al crear el evento"
-                ]);
+        $imageController  =  new imageController();
+        if($this->actualId){
+            $lugar = Eventos::find($this->actualId);
+            for($i = 0; $i < 10; $i++){
+                $a= $i+1;
+                $index = 'img'.$a;
+                $actualImage = $lugar[$index];
+                if($actualImage){
+                    $imageController->deleteImageGcs($actualImage);
+                }
             }
-        } catch (\Exception $e) {
+            $lugar->delete();
+            $this->dispatchBrowserEvent('closeDeleteModal');
+            $this->emit('refreshLugares');
             $this->dispatchBrowserEvent("alert", [
-                "type" => "warning",
-                "message" => "Error al crear el evento"
+                "type" => "success",
+                "message" => "Lugar eliminado correctamente"
             ]);
         }
     }
