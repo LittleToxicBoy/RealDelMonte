@@ -37,7 +37,7 @@
     <main class="main-content position-relative border-radius-lg ">
         @livewire('fix.nav-bar')
 
-        @livewire('fix.cards-dashboard')
+        {{-- @livewire('fix.cards-dashboard') --}}
 
         @yield('content')
 

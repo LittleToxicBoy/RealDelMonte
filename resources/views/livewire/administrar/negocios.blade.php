@@ -48,8 +48,8 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <button wire:click="asignarId({{ $negocio }}, 'editar')"
-                                        class="btn btn-info m-0"><i class="ni ni-settings"></i></button>
+                                    <a href="{{ route('negociosAdministrar', ['idNegocio' => $negocio->idNegocio]) }}"
+                                        class="btn btn-info m-0"><i class="ni ni-settings"></i></a>
                                     <button wire:click="asignarId({{ $negocio }}, 'eliminar')"
                                         class="btn btn-danger m-0">X</button>
                                 </div>

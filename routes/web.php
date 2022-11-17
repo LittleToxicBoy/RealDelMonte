@@ -24,6 +24,12 @@ Route::get('/negocios', function () {
     return view('administrar.negocios');
 })->middleware(['auth'])->name('negocios');
 
+Route::get('/negocios/administrar/{idNegocio}', function ($idNegocio) {
+    return view('administrar.negocioAd', [
+        'id_negocio' => $idNegocio
+    ]);
+})->middleware(['auth'])->name('negociosAdministrar');
+
 Route::get('/inicio', function () {
     return view('inicio.index');
 })->name('inicio');
