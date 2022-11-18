@@ -171,7 +171,10 @@ class EventosEditForm extends Component
         $this->longitude = $evento['longitud'];
         for ($i = 0; $i < 10; $i++) {
             $index = 'img' . $i + 1;
-            $this->images[$index] = $evento[$index];
+            $this->images[$index] = [
+                'url' => $evento[$index],
+                'tempUrl' => $evento[$index]
+            ];
         }
     }
 
