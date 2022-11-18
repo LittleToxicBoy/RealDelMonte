@@ -7,15 +7,14 @@ use Livewire\Component;
 
 class AdministrarNegocio extends Component
 {
-    protected $listeners = [
-        'setEditLatitude',
-        'setEditLongitude',
-    ];
-
     public $id_negocio;
     public $latitud;
     public $longitud;
     public $tipo, $nombre, $descripcion, $horario;
+    protected $listeners = [
+        'setEditLatitude',
+        'setEditLongitude',
+    ];
 
     public function setEditLatitude($value)
     {
@@ -30,20 +29,15 @@ class AdministrarNegocio extends Component
             $this->longitud = $value;
         }
     }
-
-    public function render()
-    {
-        $this->llenarVar();
-        return view('livewire.administrar.administrar-negocio', [
-            "tipo" => $this->tipo,
-        ]);
-    }
-
     public function actualizarInfo(){
 
     }
 
-    public function llenarVar(){
+    public function test(){
+
+    }
+
+    public function mount(){
         $negocio = Negocios::find($this->id_negocio);
         $this->nombre = $negocio->nombre;
         $this->descripcion = $negocio->descripcion;
@@ -51,9 +45,15 @@ class AdministrarNegocio extends Component
         $this->tipo = $negocio->tipo;
         $this->latitud = $negocio->latitud;
         $this->longitud = $negocio->longitud;
+        $this->dispatchBrowserEvent('loadMap',[
+            'lat' => $this->latitud,
+            'lng' => $this->longitud,
+        ]);
     }
 
-    public function test(){
-        dd($this->nombre, $this->tipo, $this->descripcion, $this->horario, $this->latitud, $this->longitud);
+
+    public function render()
+    {
+        return view('livewire.administrar.administrar-negocio');
     }
 }

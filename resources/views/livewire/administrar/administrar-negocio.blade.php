@@ -10,7 +10,12 @@
 
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
-                <div id="mapParent"></div>
+                <div id="mapEditParent">
+                    <div wire:ignore style="height: 180px;" id="mapEditModal">
+                    </div>
+
+                </div>
+
                 <form wire:submit.prevent="actualizarInfo">
                     <label>
                         <p class="m-0">Nombre</p>
