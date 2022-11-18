@@ -8,111 +8,112 @@
                 </button>
             </h2>
 
-            <div id="map" class="map"></div>
-
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
-
-                <label >
-                    <p class="m-0">Nombre</p>
-                </label>
-                <div class="input-group mb-3">
-                    <input type="text" wire:model="nombre" class="form-control" placeholder="Casa abandonada">
-                </div>
-                @error('nombre')
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
-                <label >
-                    <p class="m-0">Descripcion</p>
-                </label>
-                <div class="input-group mb-3">
-                    <input type="text" wire:model="descripcion" class="form-control" placeholder="Descripcion">
-                </div>
-                @error('descripcion')
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
-                <div class="gridAjuste2">
-                    <div>
-                        <label >
-                            <p class="m-0">Horario</p>
-                        </label>
-                        <div class="input-group mb-3">
-                            <input type="text" wire:model="horario" class="form-control" placeholder="Descripcion">
-                        </div>
-                    </div>
-                    <div>
-                        <label >
-                            <p class="m-0">Tipo</p>
-                        </label>
-                        <div class="input-group mb-3">
-                            <select class="form-control" wire:model="tipo" name="" id="btnOptionTipoNegocio">
-                                <option value="" selected>Seleccione tipo de negocio</option>
-                                <option value="tienda">Tienda</option>
-                                <option value="restaurante">Restaurante</option>
-                                <option value="recorrido">Recorrido</option>
-                                <option value="hotel">hotel</option>
-                                <option value="wc">wc</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                @error('horario')
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
-                @error('tipo')
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
-                <div>
-                    <label >
-                        <p class="m-0">Imagenes</p>
+                <div id="mapParent"></div>
+                <form wire:submit.prevent="actualizarInfo">
+                    <label>
+                        <p class="m-0">Nombre</p>
                     </label>
-                    <div class="d-flex">
-                        <div class="input-group mb-3">
-                            <input type="file" wire:model="imagenes" class="form-control" multiple>
+                    <div class="input-group mb-3">
+                        <input type="text" wire:model="nombre" class="form-control" placeholder="Casa abandonada">
+                    </div>
+                    @error('nombre')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
                         </div>
-                        <div wire:loading wire:target="imagenes" class="spinner-border text-warning" role="status">
-                            <span class="visually-hidden">Cargando...</span>
+                    @enderror
+                    <label>
+                        <p class="m-0">Descripcion</p>
+                    </label>
+                    <div class="input-group mb-3">
+                        <input type="text" wire:model="descripcion" class="form-control" placeholder="Descripcion">
+                    </div>
+                    @error('descripcion')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                    <div class="gridAjuste2">
+                        <div>
+                            <label>
+                                <p class="m-0">Horario</p>
+                            </label>
+                            <div class="input-group mb-3">
+                                <input type="text" wire:model="horario" class="form-control"
+                                    placeholder="Descripcion">
+                            </div>
+                        </div>
+                        <div>
+                            <label>
+                                <p class="m-0">Tipo</p>
+                            </label>
+                            <div class="input-group mb-3">
+                                <select class="form-control" wire:model="tipo" name="" id="btnOptionTipoNegocio">
+                                    <option value="" selected>Seleccione tipo de negocio</option>
+                                    <option value="tienda">Tienda</option>
+                                    <option value="restaurante">Restaurante</option>
+                                    <option value="recorrido">Recorrido</option>
+                                    <option value="hotel">hotel</option>
+                                    <option value="wc">wc</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @error('imagenes')
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
+                    @error('horario')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                    @error('tipo')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                    <div>
+                        <label>
+                            <p class="m-0">Imagenes</p>
+                        </label>
+                        <div class="d-flex">
+                            <div class="input-group mb-3">
+                                <input type="file" wire:model="imagenes" class="form-control" multiple>
+                            </div>
+                            <div wire:loading wire:target="imagenes" class="spinner-border text-warning" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
                     </div>
-                @enderror
+                    @error('imagenes')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
 
-                <div class="d-flex gap-3">
-                    <div>
-                        <div class="input-group mb-3">
-                            <input type="text" wire:model="latitud" id="latitud" class="form-control"
-                                placeholder="" readonly hidden>
+                    <div class="d-flex gap-3">
+                        <div>
+                            <div class="input-group mb-3">
+                                <input type="text" wire:model="latitud" id="latitude" class="form-control"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group mb-3">
+                                <input type="text" wire:model="longitud" id="longitude" class="form-control"
+                                    placeholder="">
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="input-group mb-3">
-                            <input type="text" wire:model="longitud" id="longitud" class="form-control"
-                                placeholder="" readonly hidden>
+                    @error('latitud')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
                         </div>
-                    </div>
-                </div>
-                @error('latitud')
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
-                @error('longitud')
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
+                    @enderror
+                    @error('longitud')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </form>
             </div>
         </div>
         <div class="accordion-item mt-4">
@@ -136,7 +137,7 @@
                                             data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
                                     </div>
                                 </div>
-    
+
                                 <!-- <div class="map" id="map"></div> -->
                                 <div class="table-responsive">
                                     <table class="table align-items-center ">
@@ -149,7 +150,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-    
+
                                             <tr>
                                                 <td>
                                                     <div class="text-center">
@@ -178,7 +179,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-    
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -187,8 +188,8 @@
                         </div> --}}
                             </div>
                         @endif
-    
-                        @if ($tipo == 'Habitacion' || $tipo == 'showroom')
+
+                        @if ($tipo == 'hotel' || $tipo == 'showroom')
                             <div class="card ">
                                 <div class="card-header pb-0 p-3 bg-red"
                                     style="background: #17202A; height: 50px !important;">
@@ -198,7 +199,7 @@
                                             data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
                                     </div>
                                 </div>
-    
+
                                 <!-- <div class="map" id="map"></div> -->
                                 <div class="table-responsive">
                                     <table class="table align-items-center ">
@@ -211,7 +212,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-    
+
                                             <tr>
                                                 <td>
                                                     <div class="text-center">
@@ -240,7 +241,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-    
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -249,7 +250,7 @@
                         </div> --}}
                             </div>
                         @endif
-    
+
                         @if ($tipo == 'recorrido')
                             <div class="card ">
                                 <div class="card-header pb-0 p-3 bg-red"
@@ -260,7 +261,7 @@
                                             data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
                                     </div>
                                 </div>
-    
+
                                 <!-- <div class="map" id="map"></div> -->
                                 <div class="table-responsive">
                                     <table class="table align-items-center ">
@@ -273,7 +274,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-    
+
                                             <tr>
                                                 <td>
                                                     <div class="text-center">
@@ -302,7 +303,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-    
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -316,5 +317,8 @@
             </div>
         </div>
     </div>
-
+    <button wire:click="test">aaa</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/administrar/negociosEdit.js') }}"></script>
 </div>
