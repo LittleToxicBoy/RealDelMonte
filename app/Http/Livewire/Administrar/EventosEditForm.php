@@ -103,7 +103,8 @@ class EventosEditForm extends Component
             $folder = $nameAlt . '-' . $this->dateStart;
             $imageName = $nameAlt . '-' . $key;
             $url = $imageController->uploadImageGcs($image, $imageName, 'realdelmonte/eventos/' . $folder);
-            $index = 'img' . $key + 1;
+            $a = $key + 1;
+            $index = 'img' . $a;
             $this->images[$index] = [
                 'url' => $url,
                 'tempUrl' => $url
@@ -170,10 +171,7 @@ class EventosEditForm extends Component
         $this->longitude = $evento['longitud'];
         for ($i = 0; $i < 10; $i++) {
             $index = 'img' . $i + 1;
-            $this->images[$index] = [
-                'url' => $evento[$index],
-                'tempUrl' => $evento[$index]
-            ];
+            $this->images[$index] = $evento[$index];
         }
     }
 
