@@ -89,9 +89,11 @@ class EventosEditForm extends Component
     public function createUpdateImage($image, $index, $key)
     {
         $imageController  =  new imageController();
-        $url = $this->images[$index];
-        if ($url && $url != '' && $url !=null) {
+        $url = $this->images[$index]['url'];
+        if ($url && $url != '' && $url != null) {
             $imageController->updateImageGcs($url, $image);
+            $this->images[$index]['tempUrl'] = $image->temporaryUrl();
+
             $this->dispatchBrowserEvent("alert", [
                 "type" => "success",
                 "message" => "Imagen actualizada correctamente"
@@ -102,7 +104,10 @@ class EventosEditForm extends Component
             $imageName = $nameAlt . '-' . $key;
             $url = $imageController->uploadImageGcs($image, $imageName, 'realdelmonte/eventos/' . $folder);
             $index = 'img' . $key + 1;
-            $this->images[$index] = $url;
+            $this->images[$index] = [
+                'url' => $url,
+                'tempUrl' => $url
+            ];
             $evento = Eventos::find($this->idEvento);
             $evento->$index = $url;
             $evento->save();
@@ -165,7 +170,10 @@ class EventosEditForm extends Component
         $this->longitude = $evento['longitud'];
         for ($i = 0; $i < 10; $i++) {
             $index = 'img' . $i + 1;
-            $this->images[$index] = $evento[$index];
+            $this->images[$index] = [
+                'url' => $evento[$index],
+                'tempUrl' => $evento[$index]
+            ];
         }
     }
 
@@ -179,17 +187,25 @@ class EventosEditForm extends Component
                 "message" => "Esta imagen no puede ser eliminada"
             ]);
         } else {
-            $imagen = $this->images[$index];
-            $imageController  =  new imageController();
-            $imageController->deleteImageGcs($imagen);
-            $this->images[$index] = null;
-            $evento = Eventos::find($this->idEvento);
-            $evento->$index = null;
-            $evento->save();
-            $this->dispatchBrowserEvent("alert", [
-                "type" => "warning",
-                "message" => "Imagen eliminada correctamente"
-            ]);
+            $imagen = $this->images[$index]['url'];
+            if ($imagen) {
+                $imageController  =  new imageController();
+                $imageController->deleteImageGcs($imagen);
+                $this->images[$index]['url'] = null;
+                $this->images[$index]['tempUrl'] = null;
+                $evento = Eventos::find($this->idEvento);
+                $evento->$index = null;
+                $evento->save();
+                $this->dispatchBrowserEvent("alert", [
+                    "type" => "warning",
+                    "message" => "Imagen eliminada correctamente"
+                ]);
+            } else {
+                $this->dispatchBrowserEvent("alert", [
+                    "type" => "warning",
+                    "message" => "Esta imagen no puede ser eliminada"
+                ]);
+            }
         }
     }
 

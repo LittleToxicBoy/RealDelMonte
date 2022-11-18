@@ -47,7 +47,8 @@ class EditForm extends Component
         }
     }
 
-    public function updateLugarData($lugar){
+    public function updateLugarData($lugar)
+    {
         $this->id_lugar = $lugar['id'];
         $this->latitude = $lugar['latitud'];
         $this->longitude = $lugar['longitud'];
@@ -55,16 +56,20 @@ class EditForm extends Component
         $this->description = $lugar['descripcion'];
         for ($i = 0; $i < 10; $i++) {
             $index = 'img' . $i + 1;
-            $this->images[$index] = $lugar[$index];
+            $this->images[$index] = [
+                'url' => $lugar[$index],
+                'tempUrl' => $lugar[$index]
+            ];
         }
     }
 
     public function createUpdateImage($image, $index, $key)
     {
         $imageController  =  new imageController();
-        $url = $this->images[$index];
-        if ($url && $url != '' && $url !=null) {
+        $url = $this->images[$index]['url'];
+        if ($url && $url != '' && $url != null) {
             $imageController->updateImageGcs($url, $image);
+            $this->images[$index]['tempUrl'] = $image->temporaryUrl();
             $this->dispatchBrowserEvent("alert", [
                 "type" => "success",
                 "message" => "Imagen actualizada correctamente"
@@ -75,7 +80,10 @@ class EditForm extends Component
             $imageName = $nameAlt . '-' . $key;
             $url = $imageController->uploadImageGcs($image, $imageName, 'realdelmonte/lugares/' . $folder);
             $index = 'img' . $key + 1;
-            $this->images[$index] = $url;
+            $this->images[$index] = [
+                'url' => $url,
+                'tempUrl' => $url
+            ];
             $evento = Lugares::find($this->id_lugar);
             $evento->$index = $url;
             $evento->save();
@@ -143,17 +151,25 @@ class EditForm extends Component
                 "message" => "Esta imagen no puede ser eliminada"
             ]);
         } else {
-            $imagen = $this->images[$index];
-            $imageController  =  new imageController();
-            $imageController->deleteImageGcs($imagen);
-            $this->images[$index] = null;
-            $lugar = Lugares::find($this->id_lugar);
-            $lugar->$index = null;
-            $lugar->save();
-            $this->dispatchBrowserEvent("alert", [
-                "type" => "warning",
-                "message" => "Imagen eliminada correctamente"
-            ]);
+            $imagen = $this->images[$index]['url'];
+            if ($imagen) {
+                $imageController  =  new imageController();
+                $imageController->deleteImageGcs($imagen);
+                $this->images[$index]['url'] = null;
+                $this->images[$index]['tempUrl'] = null;
+                $lugar = Lugares::find($this->id_lugar);
+                $lugar->$index = null;
+                $lugar->save();
+                $this->dispatchBrowserEvent("alert", [
+                    "type" => "warning",
+                    "message" => "Imagen eliminada correctamente"
+                ]);
+            } else {
+                $this->dispatchBrowserEvent("alert", [
+                    "type" => "warning",
+                    "message" => "Esta imagen no puede ser eliminada"
+                ]);
+            }
         }
     }
 

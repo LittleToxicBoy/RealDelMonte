@@ -107,16 +107,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="py-3 text-center">
-                        <i class="ni ni-bell-55 ni-3x" style="color:cadetblue;"></i>
-                        <h4 class="text-gradient text-danger mt-4">Esta seguro de eliminar este evento?</h4>
-                        <p style="color:darkgrey;">Las acciones no podran ser canceladas.</p>
+                    <div wire:loading.delay wire:target="deleteEvento" style="width:100%;">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div wire:loading.remove wire:target="deleteEvento">
+                        <div class="py-3 text-center">
+                            <i class="ni ni-bell-55 ni-3x" style="color:cadetblue;"></i>
+                            <h4 class="text-gradient text-danger mt-4">Esta seguro de eliminar este evento?</h4>
+                            <p style="color:darkgrey;">Las acciones no podran ser canceladas.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" wire:click="deleteEvento" class="btn bg-gradient-danger">Eliminar</button>
-                    <button type="button" class="btn btn-link bg-gradient-secondary ml-auto"
-                        data-bs-dismiss="modal">Cerrar</button>
+                    <div wire:loading.remove wire:target="deleteEvento">
+                        <button type="button" wire:click="deleteEvento"
+                            class="btn bg-gradient-danger">Eliminar</button>
+                        <button type="button" class="btn btn-link bg-gradient-secondary ml-auto"
+                            data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
