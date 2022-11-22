@@ -252,6 +252,20 @@
     top: -105%;
 }
 
+.btn-deletesAd {
+    z-index: 10;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    background-color: #17202A;
+    color: #EC7063;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    left: 70%;
+    top: -105%;
+}
+
 .img-label > img {
     position: absolute;
     width: 100%;
@@ -304,4 +318,19 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+}
+
+
+.gridImg{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media (min-width: 1024px) { 
+    .gridImg{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
 }

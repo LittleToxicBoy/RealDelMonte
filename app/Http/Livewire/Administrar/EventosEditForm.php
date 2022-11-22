@@ -170,7 +170,8 @@ class EventosEditForm extends Component
         $this->latitude = $evento['latitud'];
         $this->longitude = $evento['longitud'];
         for ($i = 0; $i < 10; $i++) {
-            $index = 'img' . $i + 1;
+            $a = $i + 1;
+            $index = 'img' . $a;
             $this->images[$index] = [
                 'url' => $evento[$index],
                 'tempUrl' => $evento[$index]

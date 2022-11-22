@@ -11,7 +11,7 @@ $(document).ready(function () {
 });
 function mapEdit(latitud,longitud) {
     document.getElementById("mapEditParent").innerHTML =
-        '<div wire:ignore style="height: 180px;" id="mapEditModal"></div>';
+        '<div wire:ignore style="height: 380px;" id="mapEditModal"></div>';
     var map2 = printMap("mapEditModal", latitud, longitud);
     var marker2 = L.marker([latitud, longitud]).addTo(map2);
     map2.on("click", function (e) {
@@ -37,3 +37,7 @@ function printMap(
     }).addTo(map);
     return map;
 }
+
+window.addEventListener('openAddHotel', function(e) {
+    $('#modalAgregarHotel').modal('show');
+});

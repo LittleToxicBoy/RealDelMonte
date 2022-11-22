@@ -1,9 +1,10 @@
 <div>
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne" style="background: #4A235A !important; border-radius: 10px">
+            <h2 class="accordion-header" id="headingOne" style="background: #4A235A !important; border-radius: 10px"
+                wire:ignore>
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
+                    aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                     <h6 class="m-0">Datos generales</h6 class="m-0">
                 </button>
             </h2>
@@ -75,7 +76,7 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @enderror
-                    <div>
+                    <div style="display: none;">
                         <label>
                             <p class="m-0">Imagenes</p>
                         </label>
@@ -88,6 +89,38 @@
                             </div>
                         </div>
                     </div>
+                    <label style="color: black !important;">
+                        <p class="m-0">Imagenes (10 imagenes maximo) </p>
+                    </label>
+                    @if ($images)
+                        <div class="gridImg">
+                            @for ($i = 1; $i < 11; $i++)
+                                @php
+                                    $auxIndex = 'img' . $i;
+                                    $auxUp = ucfirst($auxIndex);
+                                @endphp
+                                <div style="margin-bottom:10px;margin-top:10px; width: 100%;" class="col-4">
+                                    <div class="image-div">
+                                        <label class="img-label" for="input'{{ $i }}'">
+                                            <img
+                                                src="@if ($images[$auxIndex]['tempUrl'] &&
+                                                    $images[$auxIndex]['tempUrl'] != '' &&
+                                                    $images[$auxIndex]['tempUrl'] != null) {{ $images[$auxIndex]['tempUrl'] }} @else {{ $auxImage }} @endif">
+                                            <div class="overlay">
+                                                <a class="icon" title="Upload Image">
+                                                    <i class="ni ni-image"></i>
+                                                </a>
+                                            </div>
+                                        </label>
+                                        <input wire:model="{{ $auxIndex }}" type="file" hidden
+                                            id="input'{{ $i }}'">
+                                        <button wire:click.prevent="deleteImages('{{ $auxIndex }}')"
+                                            class="btn-deletesAd"><i class="ni ni-fat-remove"></i></button>
+                                    </div>
+                                </div>
+                            @endfor
+                        </div>
+                    @endif
                     @error('imagenes')
                         <div class="alert alert-danger" role="alert">
                             <strong>{{ $message }}</strong>
@@ -98,13 +131,13 @@
                         <div>
                             <div class="input-group mb-3">
                                 <input type="text" wire:model="latitud" id="latitude" class="form-control"
-                                    placeholder="">
+                                    placeholder="" hidden>
                             </div>
                         </div>
                         <div>
                             <div class="input-group mb-3">
                                 <input type="text" wire:model="longitud" id="longitude" class="form-control"
-                                    placeholder="">
+                                    placeholder="" hidden>
                             </div>
                         </div>
                     </div>
@@ -118,211 +151,141 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @enderror
+
+                    <button type="submit" class="btn bg-gradient-primary">Aceptar</button>
                 </form>
             </div>
         </div>
-        <div class="accordion-item mt-4">
-            <h2 class="accordion-header" id="headingThree" style="background: #4A235A !important; border-radius: 10px">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <h6>Negocios datos</h6>
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div>
-                        @if ($tipo == 'restaurante' || $tipo == 'showroom')
-                            <div class="card ">
-                                <div class="card-header pb-0 p-3 bg-red"
-                                    style="background: #17202A; height: 50px !important;">
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="mb-2">Restaurante Menu</h6>
-                                        <button type="button" id="openModal" class="btn btn-success btnHeaderT"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                                    </div>
-                                </div>
+    </div>
+    <div class="">
+        <h3 class="text-center mt-4 mb-4" style="color: white;">Administrar</h3>
+        <div>
+            @if ($tipo == 'restaurante' || $tipo == 'showroom')
+                <div class="card ">
+                    <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 50px !important;">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-2">Restaurante Menu</h6>
+                            <button type="button" id="openModal" class="btn btn-success btnHeaderT"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+                        </div>
+                    </div>
 
-                                <!-- <div class="map" id="map"></div> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center ">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Nombre</th>
-                                                <th class="text-center">Descripcion</th>
-                                                <th class="text-center">Precio</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                    <!-- <div class="map" id="map"></div> -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center ">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Descripcion</th>
+                                    <th class="text-center">Precio</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                            <tr>
-                                                <td>
-                                                    <div class="text-center">
-                                                        <h6 class="text-sm mb-0"></h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td">
-                                                        <div class="celdaAsignado">
-                                                            <h6 class="text-sm mb-0 "></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td">
-                                                        <div class="celdaAsignado">
-                                                            <h6 class="text-sm mb-0 "></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center gap-2">
-                                                        <button wire:click="" class="btn btn-info m-0"><i
-                                                                class="ni ni-settings"></i></button>
-                                                        <button wire:click="" class="btn btn-danger m-0">X</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                <tr>
+                                    <td>
+                                        <div class="text-center">
+                                            <h6 class="text-sm mb-0"></h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="td">
+                                            <div class="celdaAsignado">
+                                                <h6 class="text-sm mb-0 "></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="td">
+                                            <div class="celdaAsignado">
+                                                <h6 class="text-sm mb-0 "></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <button wire:click="" class="btn btn-info m-0"><i
+                                                    class="ni ni-settings"></i></button>
+                                            <button wire:click="" class="btn btn-danger m-0">X</button>
+                                        </div>
+                                    </td>
+                                </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{-- <div class="d-flex align-items-center justify-content-center">
-                            {{ $negocios->links() }}
-                        </div> --}}
-                            </div>
-                        @endif
-
-                        @if ($tipo == 'hotel' || $tipo == 'showroom')
-                            <div class="card ">
-                                <div class="card-header pb-0 p-3 bg-red"
-                                    style="background: #17202A; height: 50px !important;">
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="mb-2">Hospedaje</h6>
-                                        <button type="button" id="openModal" class="btn btn-success btnHeaderT"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="map" id="map"></div> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center ">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Nombre</th>
-                                                <th class="text-center">Descripcion</th>
-                                                <th class="text-center">Precio</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="text-center">
-                                                        <h6 class="text-sm mb-0"></h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td">
-                                                        <div class="celdaAsignado">
-                                                            <h6 class="text-sm mb-0 "></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td">
-                                                        <div class="celdaAsignado">
-                                                            <h6 class="text-sm mb-0 "></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center gap-2">
-                                                        <button wire:click="" class="btn btn-info m-0"><i
-                                                                class="ni ni-settings"></i></button>
-                                                        <button wire:click="" class="btn btn-danger m-0">X</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{-- <div class="d-flex align-items-center justify-content-center">
-                            {{ $negocios->links() }}
-                        </div> --}}
-                            </div>
-                        @endif
-
-                        @if ($tipo == 'recorrido')
-                            <div class="card ">
-                                <div class="card-header pb-0 p-3 bg-red"
-                                    style="background: #17202A; height: 50px !important;">
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="mb-2">Recorridos</h6>
-                                        <button type="button" id="openModal" class="btn btn-success btnHeaderT"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="map" id="map"></div> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center ">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Nombre</th>
-                                                <th class="text-center">Descripcion</th>
-                                                <th class="text-center">Precio</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="text-center">
-                                                        <h6 class="text-sm mb-0"></h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td">
-                                                        <div class="celdaAsignado">
-                                                            <h6 class="text-sm mb-0 "></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td">
-                                                        <div class="celdaAsignado">
-                                                            <h6 class="text-sm mb-0 "></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center gap-2">
-                                                        <button wire:click="" class="btn btn-info m-0"><i
-                                                                class="ni ni-settings"></i></button>
-                                                        <button wire:click="" class="btn btn-danger m-0">X</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{-- <div class="d-flex align-items-center justify-content-center">
-                            {{ $negocios->links() }}
-                        </div> --}}
-                            </div>
-                        @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
+            @endif
+
+            @if ($tipo == 'hotel' || $tipo == 'showroom')
+                @livewire('administrar.table-hotel', [
+                    'id_negocio' => $id_negocio,
+                ])
+            @endif
+
+            @if ($tipo == 'recorrido')
+                <div class="card ">
+                    <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 50px !important;">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-2">Recorridos</h6>
+                            <button type="button" id="openModal" class="btn btn-success btnHeaderT"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+                        </div>
+                    </div>
+
+                    <!-- <div class="map" id="map"></div> -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center ">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Descripcion</th>
+                                    <th class="text-center">Precio</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <div class="text-center">
+                                            <h6 class="text-sm mb-0"></h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="td">
+                                            <div class="celdaAsignado">
+                                                <h6 class="text-sm mb-0 "></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="td">
+                                            <div class="celdaAsignado">
+                                                <h6 class="text-sm mb-0 "></h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <button wire:click="" class="btn btn-info m-0"><i
+                                                    class="ni ni-settings"></i></button>
+                                            <button wire:click="" class="btn btn-danger m-0">X</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    {{-- <div class="d-flex align-items-center justify-content-center">
+                {{ $negocios->links() }}
+            </div> --}}
+                </div>
+            @endif
         </div>
     </div>
-    <button wire:click="test">aaa</button>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/administrar/negociosEdit.js') }}"></script>
