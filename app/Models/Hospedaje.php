@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Hospedaje extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'idHospedaje';
     protected $fillable = [
         'nombreHabitacion',
         'precio',
+        'descripcion',
         'img1',
         'img2',
         'img3',

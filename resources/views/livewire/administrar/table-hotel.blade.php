@@ -43,9 +43,9 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <button wire:click="" class="btn btn-info m-0"><i
+                                    <button wire:click="editarH({{ $habitacion }})" class="btn btn-info m-0"><i
                                             class="ni ni-settings"></i></button>
-                                    <button wire:click="" class="btn btn-danger m-0">X</button>
+                                    <button wire:click="eliminarH({{ $habitacion->idHospedaje }})" class="btn btn-danger m-0">X</button>
                                 </div>
                             </td>
                         </tr>
@@ -69,12 +69,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn bg-gradient-primary">Save
-                        changes</button>
+                    @livewire('administrar.form-hospedaje', [
+                        'id_negocio' => $id_negocio,
+                    ])
                 </div>
             </div>
         </div>

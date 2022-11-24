@@ -41,3 +41,6 @@ function printMap(
 window.addEventListener('openAddHotel', function(e) {
     $('#modalAgregarHotel').modal('show');
 });
+window.addEventListener('closeAddHotel', function(e) {
+    $('#modalAgregarHotel').modal('hide');
+});
