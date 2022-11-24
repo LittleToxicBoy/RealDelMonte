@@ -49,10 +49,12 @@
                             <select class="form-control" wire:model="tipo" name="" id="btnOptionTipoNegocio">
                                 <option value="" selected>Seleccione tipo de negocio</option>
                                 <option value="tienda">Tienda</option>
+                                <option value="showroom">showroom</option>
                                 <option value="restaurante">Restaurante</option>
                                 <option value="recorrido">Recorrido</option>
                                 <option value="hotel">hotel</option>
-                                <option value="wc">wc</option>
+                                <option value="servicios">Servicios</option>
+                                <option value="transporte">Transporte</option>
                             </select>
                         </div>
                     </div>

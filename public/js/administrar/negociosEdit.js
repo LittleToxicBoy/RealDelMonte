@@ -44,3 +44,9 @@ window.addEventListener('openAddHotel', function(e) {
 window.addEventListener('closeAddHotel', function(e) {
     $('#modalAgregarHotel').modal('hide');
 });
+window.addEventListener('addEditR', function(e) {
+    $('#modalAgregarEditarMenus').modal('show');
+});
+window.addEventListener('closeEditR', function(e) {
+    $('#modalAgregarEditarMenus').modal('hide');
+});

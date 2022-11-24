@@ -9,7 +9,10 @@ class Restaurantes extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idRestaurante';
     protected $fillable = [
+        'nombre',
+        'descripcion',
         'img1',
         'img2',
         'img3',
