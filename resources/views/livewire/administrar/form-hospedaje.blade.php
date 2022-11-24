@@ -110,11 +110,13 @@
                 @for ($i = 1; $i < 11; $i++)
                     @php
                         $auxIndex = 'img' . $i;
+                        $auxIndexAlt = 'img' . $i . 'a';
                         $auxUp = ucfirst($auxIndex);
+                        $k = $i . 'h';
                     @endphp
                     <div style="margin-bottom:10px;margin-top:10px;" class="col-4">
                         <div class="image-div">
-                            <label class="img-label" for="input'{{ $i }}'">
+                            <label class="img-label" for="input{{ $k }}">
                                 <img
                                     src="@if ($imagesa[$auxIndex]['tempUrl'] &&
                                         $imagesa[$auxIndex]['tempUrl'] != '' &&
@@ -125,8 +127,7 @@
                                     </a>
                                 </div>
                             </label>
-                            <input wire:model="{{ $auxIndex.'a' }}" type="file" hidden
-                               >
+                            <input wire:model="{{ $auxIndexAlt }}" type="file" id="input{{ $k }}" hidden>
                             <button wire:click.prevent="deleteImages('{{ $auxIndex }}')" class="btn-delete"><i
                                     class="ni ni-fat-remove"></i></button>
                         </div>

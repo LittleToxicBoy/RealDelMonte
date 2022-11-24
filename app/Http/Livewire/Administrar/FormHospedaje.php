@@ -43,7 +43,7 @@ class FormHospedaje extends Component
 
     public function updatedImg1a($value)
     {
-        $this->createUpdateImage($value, 'img1', 0);
+        $this->createUpdateImageSS($value, 'img1', 0);
     }
 
     public function updatedImg2a($value)
@@ -105,7 +105,7 @@ class FormHospedaje extends Component
             ]);
         } else {
             $nameAlt = strtolower(strtr($this->nombre, " ", "_"));
-            $folder = $nameAlt . '-' . $this->id_negocio;
+            $folder = $nameAlt . '-Hospedaje';
             $imageName = $nameAlt . '-' . $key;
             $url = $imageController->uploadImageGcs($image, $imageName, 'realdelmonte/negocios/hospedaje/' . $folder);
             $a = $key + 1;
