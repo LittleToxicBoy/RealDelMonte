@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Administrar;
 
+use App\Http\Controllers\helpers\imageController;
 use App\Models\Hospedaje;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -27,7 +28,16 @@ class TableHotel extends Component
     }
 
     public function eliminarH($id){
+        $imageController  =  new imageController();
         $habitacion = Hospedaje::where('idHospedaje', '=', $id)->first();
+        for ($i = 0; $i < 10; $i++) {
+            $a = $i + 1;
+            $index = 'img' . $a;
+            $actualImage = $habitacion[$index];
+            if ($actualImage) {
+                $imageController->deleteImageGcs($actualImage);
+            }
+        }
         $habitacion->delete();
         $this->emit('refreshEventos');
     }

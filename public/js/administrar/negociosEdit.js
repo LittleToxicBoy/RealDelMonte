@@ -50,3 +50,9 @@ window.addEventListener('addEditR', function(e) {
 window.addEventListener('closeEditR', function(e) {
     $('#modalAgregarEditarMenus').modal('hide');
 });
+window.addEventListener('addEditRecorrido', function(e) {
+    $('#mdlAddEditRecorridos').modal('show');
+});
+window.addEventListener('closeEditRecorrido', function(e) {
+    $('#mdlAddEditRecorridos').modal('hide');
+});

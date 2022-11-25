@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recorridos extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'idRecorrido';
     protected $fillable = [
         'nombre',
         'costo',

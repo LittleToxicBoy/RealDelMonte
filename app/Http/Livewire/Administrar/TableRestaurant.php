@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Administrar;
 
+use App\Http\Controllers\helpers\imageController;
 use App\Models\Restaurantes;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -29,8 +30,17 @@ class TableRestaurant extends Component
     }
 
     public function eliminarResta($id){
-        $habitacion = Restaurantes::where('idRestaurante', '=', $id)->first();
-        $habitacion->delete();
+        $imageController  =  new imageController();
+        $restaurante = Restaurantes::where('idRestaurante', '=', $id)->first();
+        for ($i = 0; $i < 10; $i++) {
+            $a = $i + 1;
+            $index = 'img' . $a;
+            $actualImage = $restaurante[$index];
+            if ($actualImage) {
+                $imageController->deleteImageGcs($actualImage);
+            }
+        }
+        $restaurante->delete();
         $this->emit('refreshEventos');
     }
 
