@@ -183,6 +183,10 @@ class AdministrarNegocio extends Component
         $negocio->tipo = $this->tipo;
         $negocio->descripcion = $this->descripcion;
         $negocio->save();
+        $this->dispatchBrowserEvent("alert", [
+            "type" => "success",
+            "message" => "Informacion actualizada correctamente"
+        ]);
     }
 
     public function test(){
