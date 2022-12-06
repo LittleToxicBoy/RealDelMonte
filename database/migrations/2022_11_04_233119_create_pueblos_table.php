@@ -16,8 +16,8 @@ class CreatePueblosTable extends Migration
         Schema::create('pueblos', function (Blueprint $table) {
             $table->id('idPueblo');
             $table->string('nombre');
-            $table->string('latitud');
-            $table->string('longitud');
+            $table->string('latitud')->nullable();
+            $table->string('longitud')->nullable();
             $table->string('img1')->nullable();
             $table->string('img2')->nullable();
             $table->string('img3')->nullable();

@@ -59,6 +59,7 @@
                                     <option value="" selected>Seleccione tipo de negocio</option>
                                     <option value="tienda">Tienda</option>
                                     <option value="showroom">showroom</option>
+                                    <option value="srNegocio">Negocio para showroom</option>
                                     <option value="restaurante">Restaurante</option>
                                     <option value="recorrido">Recorrido</option>
                                     <option value="hotel">hotel</option>
