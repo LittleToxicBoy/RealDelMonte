@@ -17,7 +17,7 @@ class CreateHospedajesTable extends Migration
             $table->id('idHospedaje');
             $table->string('nombreHabitacion');
             $table->decimal('precio', 10, 2);
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('img1')->nullable();
             $table->string('img2')->nullable();
             $table->string('img3')->nullable();

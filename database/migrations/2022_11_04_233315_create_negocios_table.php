@@ -19,8 +19,9 @@ class CreateNegociosTable extends Migration
             $table->string('latitud');
             $table->string('longitud');
             $table->string('horarioDes');
-            $table->enum('tipo', ['tienda', 'showroom', 'restaurante', 'recorrido', 'hotel', 'servicios', 'transporte', 'srNegocio']);
-            $table->string('descripcion');
+            $table->enum('srActivo', ['si', 'no']);
+            $table->enum('tipo', ['tienda', 'showroom', 'restaurante', 'recorrido', 'hotel', 'servicios', 'transporte']);
+            $table->text('descripcion');
             $table->string('img1')->nullable();
             $table->string('img2')->nullable();
             $table->string('img3')->nullable();
@@ -38,6 +39,9 @@ class CreateNegociosTable extends Migration
 
             $table->unsignedBigInteger('idUser')->nullable();
             $table->foreign('idUser')->references('id')->on('users');
+
+            $table->unsignedBigInteger('id_negocio_fk')->nullable();
+            $table->foreign('id_negocio_fk')->references('idNegocio')->on('negocios');
             
             $table->timestamps();
         });

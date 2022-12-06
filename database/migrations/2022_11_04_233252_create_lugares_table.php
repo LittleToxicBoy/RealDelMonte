@@ -16,7 +16,7 @@ class CreateLugaresTable extends Migration
         Schema::create('lugares', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('latitud');
             $table->string('longitud');
             $table->string('img1')->nullable();

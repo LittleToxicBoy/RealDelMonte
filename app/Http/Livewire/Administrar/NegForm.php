@@ -69,6 +69,7 @@ class NegForm extends Component
         $eventData = [
             'nombre' => $this->nombre,
             'latitud' => $this->latitud,
+            'srActivo' => 'no',
             'longitud' => $this->longitud,
             'horarioDes' => $this->horario,
             'tipo' => $this->tipo,

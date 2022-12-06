@@ -14,6 +14,7 @@ class Negocios extends Model
         'latitud',
         'longitud',
         'horarioDes',
+        'srActivo',
         'tipo',
         'descripcion',
         'idPueblo',
@@ -27,5 +28,6 @@ class Negocios extends Model
         'img8',
         'img9',
         'img10',
+        'id_negocio_fk'
     ];
 }

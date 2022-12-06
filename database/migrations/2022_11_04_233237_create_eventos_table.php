@@ -18,7 +18,7 @@ class CreateEventosTable extends Migration
             $table->string('nombre');
             $table->string('fechaInicio');
             $table->string('fechaTermino');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('latitud');
             $table->string('longitud');
             $table->string('img1')->nullable();

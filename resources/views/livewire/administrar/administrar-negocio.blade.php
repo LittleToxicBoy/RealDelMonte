@@ -59,7 +59,6 @@
                                     <option value="" selected>Seleccione tipo de negocio</option>
                                     <option value="tienda">Tienda</option>
                                     <option value="showroom">showroom</option>
-                                    <option value="srNegocio">Negocio para showroom</option>
                                     <option value="restaurante">Restaurante</option>
                                     <option value="recorrido">Recorrido</option>
                                     <option value="hotel">hotel</option>
@@ -167,6 +166,12 @@
                 @livewire('administrar.table-restaurant', [
                     'id_negocio' => $id_negocio,
                     'tipo' => $tipo,
+                ])
+            @endif
+
+            @if ($tipo == 'showroom')
+                @livewire('administrar.table-negocios-sr', [
+                    'id_negocio' => $id_negocio,
                 ])
             @endif
 

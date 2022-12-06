@@ -36,7 +36,7 @@ class Negocios extends Component
     {
         $imageController  =  new imageController();
         // dd($this->idNegocio);
-        if ($this->idNegocio['tipo'] == 'tienda' || $this->idNegocio['tipo'] == 'servicios' || $this->idNegocio['tipo'] == 'transporte' || $this->idNegocio['tipo'] == 'srNegocio') {
+        if ($this->idNegocio['tipo'] == 'tienda' || $this->idNegocio['tipo'] == 'servicios' || $this->idNegocio['tipo'] == 'transporte' ) {
             $delete = ModelsNegocios::find($this->idNegocio['idNegocio']);
             for ($i = 0; $i < 10; $i++) {
                 $a = $i + 1;
@@ -146,7 +146,9 @@ class Negocios extends Component
 
     public function render()
     {
-        $negocios = ModelsNegocios::where('idPueblo', 1)->paginate(5);
+        $negocios = ModelsNegocios::where('idPueblo', 1)
+            ->where('srActivo', 'no')
+            ->paginate(5);
         return view('livewire.administrar.negocios', [
             'negocios' => $negocios
         ]);

@@ -56,3 +56,10 @@ window.addEventListener('addEditRecorrido', function(e) {
 window.addEventListener('closeEditRecorrido', function(e) {
     $('#mdlAddEditRecorridos').modal('hide');
 });
+
+window.addEventListener('addNegSr', function(e) {
+    $('#modalAgregarNegocioShowroom').modal('show');
+});
+window.addEventListener('closeNegSr', function(e) {
+    $('#modalAgregarNegocioShowroom').modal('hide');
+});
