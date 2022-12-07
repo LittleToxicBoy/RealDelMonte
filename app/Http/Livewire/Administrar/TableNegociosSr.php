@@ -14,6 +14,7 @@ class TableNegociosSr extends Component
     protected $listeners = [
         'refreshEventos' => '$refresh'
     ];
+    public $searchTerm = "";
     public $id_negocio;
 
     public function agregarNegocio(){
@@ -49,8 +50,14 @@ class TableNegociosSr extends Component
 
     public function render()
     {
+        $search = '%' . $this->searchTerm . '%';
         $negocios = Negocios::where('srActivo', 'si')
             ->where('id_negocio_fk', $this->id_negocio)
+            ->where(function ($query) use ($search) {
+                $query->where('nombre', 'like', $search)
+                    ->orWhere('descripcion', 'like', $search)
+                    ->orWhere('tipo', 'like', $search);
+            })
             ->paginate(5);
 
         return view('livewire.administrar.table-negocios-sr', [

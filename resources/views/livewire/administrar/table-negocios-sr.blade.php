@@ -1,14 +1,19 @@
 <div class="mt-4">
     <div class="card ">
-        <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 50px !important;">
+        <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 60px !important;">
             <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Negocios en el Showroom</h6>
-
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                        <input wire:model="searchTerm" class="form-control form-control-alternative" placeholder="Search"
+                            type="text">
+                    </div>
+                </div>
                 <button wire:click.prevent='agregarNegocio' type="button" id="openModal"
                     class="btn btn-success btnHeaderT">+</button>
             </div>
         </div>
-
         <!-- <div class="map" id="map"></div> -->
         <div class="table-responsive">
             <table class="table align-items-center ">
@@ -16,6 +21,7 @@
                     <tr>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Descripcion</th>
+                        <th class="text-center">Tipo</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -31,6 +37,13 @@
                                 <div class="td">
                                     <div class="celdaAsignado">
                                         <h6 class="text-sm mb-0 ">{{ $negocio->descripcion }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="td">
+                                    <div class="">
+                                        <h6 class="text-sm mb-0 ">{{ $negocio->tipo }}</h6>
                                     </div>
                                 </div>
                             </td>

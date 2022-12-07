@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function checarSession(){
         if(Auth::user()){
-            return redirect('inicio');
+            return redirect('administrar');
         }else{  
             return redirect('login');
         }

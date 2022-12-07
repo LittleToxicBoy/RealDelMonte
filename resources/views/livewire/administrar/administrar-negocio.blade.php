@@ -162,7 +162,7 @@
     <div class="">
         <h3 class="text-center mt-4 mb-4" style="color: white;">Administrar</h3>
         <div>
-            @if ($tipo == 'restaurante' || $tipo == 'showroom')
+            @if ($tipo == 'restaurante')
                 @livewire('administrar.table-restaurant', [
                     'id_negocio' => $id_negocio,
                     'tipo' => $tipo,

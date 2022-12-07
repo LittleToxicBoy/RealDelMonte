@@ -27,6 +27,20 @@
 
             <div>
                 <label style="color: black !important;">
+                    <p class="m-0">Tipo de negocio</p>
+                </label>
+                <div class="input-group mb-3">
+                    <select class="form-control" wire:model="tipo" name="" id="btnOptionTipoNegocio">
+                        <option value="" selected>Seleccione tipo de negocio</option>
+                        <option value="tienda">Tienda</option>
+                        <option value="restaurante">Restaurante</option>
+                        <option value="servicios">Servicios</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label style="color: black !important;">
                     <p class="m-0">Imagenes</p>
                 </label>
                 <div class="d-flex">
@@ -75,6 +89,20 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
+
+            <div>
+                <label style="color: black !important;">
+                    <p class="m-0">Tipo de negocio</p>
+                </label>
+                <div class="input-group mb-3">
+                    <select class="form-control" wire:model="tipo" name="" id="btnOptionTipoNegocio">
+                        <option value="" selected>Seleccione tipo de negocio</option>
+                        <option value="tienda">Tienda</option>
+                        <option value="restaurante">Restaurante</option>
+                        <option value="servicios">Servicios</option>
+                    </select>
+                </div>
+            </div>
 
             <button type="submit" class="btn bg-gradient-primary">Agregar</button>
             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancelar</button>

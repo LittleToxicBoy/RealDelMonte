@@ -14,7 +14,7 @@ class FormNegociosShowroom extends Component
     //varibales del Showroom
     public $id_negocio, $accion;
     //Vaibles del nuevo negocio
-    public $nombre, $descripcion, $negocioEdit, $id_negocioEdit;
+    public $nombre, $descripcion, $negocioEdit, $id_negocioEdit, $tipo;
     //Variables para las imagenes
     public $images = [];
     public $imagenes = [];
@@ -30,6 +30,7 @@ class FormNegociosShowroom extends Component
         'nombre' => 'required',
         'descripcion' => 'required',
         'imagenes' => 'required',
+        'tipo' => 'required',
     ];
 
     public function setAccion($value)
@@ -44,6 +45,7 @@ class FormNegociosShowroom extends Component
             $this->id_negocioEdit = $value['idNegocio'];
             $this->nombre = $value['nombre'];
             $this->descripcion = $value['descripcion'];
+            $this->tipo = $value['tipo'];
 
             for ($i = 0; $i < 10; $i++) {
                 $a = $i + 1;
@@ -71,7 +73,7 @@ class FormNegociosShowroom extends Component
             'longitud' => $negocioPrincipal->longitud,
             'horarioDes' => $negocioPrincipal->horarioDes,
             'srActivo' => 'si',
-            'tipo' => 'tienda',
+            'tipo' => $this->tipo,
             'descripcion' => $this->descripcion,
             'id_negocio_fk' => $negocioPrincipal->idNegocio,
             'idPueblo' => 1,
@@ -99,11 +101,13 @@ class FormNegociosShowroom extends Component
         $this->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
+            'tipo' => 'required',
         ]);
 
         $editar = Negocios::find($this->id_negocioEdit);
         $editar->nombre = $this->nombre;
         $editar->descripcion = $this->descripcion;
+        $editar->tipo = $this->tipo;
         $editar->save();
 
         $this->emit('refreshEventos');

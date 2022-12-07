@@ -15,6 +15,7 @@ class Negocios extends Component
     use WithPagination;
     public $actualId;
     public $idNegocio;
+    public $searchTerm = "";
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
         'refreshEventos' => '$refresh'
@@ -36,7 +37,7 @@ class Negocios extends Component
     {
         $imageController  =  new imageController();
         // dd($this->idNegocio);
-        if ($this->idNegocio['tipo'] == 'tienda' || $this->idNegocio['tipo'] == 'servicios' || $this->idNegocio['tipo'] == 'transporte' ) {
+        if ($this->idNegocio['tipo'] == 'tienda' || $this->idNegocio['tipo'] == 'servicios' || $this->idNegocio['tipo'] == 'transporte') {
             $delete = ModelsNegocios::find($this->idNegocio['idNegocio']);
             for ($i = 0; $i < 10; $i++) {
                 $a = $i + 1;
@@ -146,7 +147,13 @@ class Negocios extends Component
 
     public function render()
     {
+        $search = '%' . $this->searchTerm . '%';
         $negocios = ModelsNegocios::where('idPueblo', 1)
+            ->where(function ($query) use ($search) {
+                $query->where('nombre', 'like', $search)
+                    ->orWhere('descripcion', 'like', $search)
+                    ->orWhere('tipo', 'like', $search);
+            })
             ->where('srActivo', 'no')
             ->paginate(5);
         return view('livewire.administrar.negocios', [

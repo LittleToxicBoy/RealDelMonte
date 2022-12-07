@@ -1,8 +1,15 @@
 <div class="">
     <div class="card ">
-        <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 50px !important;">
+        <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 60px !important;">
             <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Lugares</h6>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                        <input wire:model="searchTerm" class="form-control form-control-alternative" placeholder="Search"
+                            type="text">
+                    </div>
+                </div>
                 <button type="button" id="openModal" class="btn btn-success btnHeaderT" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">+</button>
             </div>
