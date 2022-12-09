@@ -1,15 +1,15 @@
 <div>
     <div class="card ">
+        <div class="form-group p-4 pb-0 m-0">
+            <div class="input-group input-group-alternative mb-4">
+                <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                <input wire:model="searchTerm" class="form-control form-control-alternative"
+                placeholder="Search" type="text">
+            </div>
+        </div>
         <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 60px !important;">
             <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Hospedaje</h6>
-                <div class="form-group">
-                    <div class="input-group input-group-alternative mb-4">
-                        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                        <input wire:model="searchTerm" class="form-control form-control-alternative" placeholder="Search"
-                            type="text">
-                    </div>
-                </div>
                 <button wire:click.prevent='agregarH' type="button" id="openModal"
                     class="btn btn-success btnHeaderT">+</button>
             </div>
@@ -52,7 +52,8 @@
                                 <div class="d-flex justify-content-center gap-2">
                                     <button wire:click="editarH({{ $habitacion }})" class="btn btn-info m-0"><i
                                             class="ni ni-settings"></i></button>
-                                    <button wire:click="eliminarH({{ $habitacion->idHospedaje }})" class="btn btn-danger m-0">X</button>
+                                    <button wire:click="eliminarH({{ $habitacion->idHospedaje }})"
+                                        class="btn btn-danger m-0">X</button>
                                 </div>
                             </td>
                         </tr>
@@ -70,7 +71,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: #17202A !important;">Agregar habitacion</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #17202A !important;">Agregar habitacion
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
