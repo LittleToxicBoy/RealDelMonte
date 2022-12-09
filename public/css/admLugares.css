@@ -253,7 +253,7 @@
 }
 
 .btn-deletesAd {
-    z-index: 10;
+    z-index: 1;
     position: relative;
     height: 40px;
     width: 40px;

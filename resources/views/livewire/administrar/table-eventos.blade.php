@@ -42,7 +42,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="text-center">
+                                <div class="celdaAsignado">
                                     <h6 class="text-sm mb-0">{{ $evento->descripcion }}</h6>
                                 </div>
                             </td>
