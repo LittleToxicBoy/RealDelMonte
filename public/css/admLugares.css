@@ -334,3 +334,9 @@
         gap: 10px;
     }
 }
+
+.grid2Columns{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}

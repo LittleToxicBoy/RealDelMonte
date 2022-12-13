@@ -57,9 +57,12 @@
                                 <div class="d-flex justify-content-center gap-2">
                                     <a href="{{ route('negociosAdministrar', ['idNegocio' => $negocio->idNegocio, 'tipo' => $negocio->tipo]) }}"
                                         class="btn btn-info m-0"><i class="ni ni-settings"></i></a>
+                                        
+                                    <a href="{{ route('negociosPromociones', ['negocio' => $negocio->idNegocio]) }}"
+                                        class="btn btn-success m-0"><i class="fas fa-list-alt"></i></a>
+
                                     <button wire:click="asignarId({{ $negocio }}, 'eliminar')"
-                                        class="btn btn-danger m-0">X</button>
-                                </div>
+                                        class="btn btn-danger m-0">X</button </div>
                             </td>
                         </tr>
                     @endforeach
@@ -178,7 +181,32 @@
             </div>
         </div>
     </div>
+    {{-- Modal Promociones --}}
+    <div style="margin-left: 17.125rem;">
+        <div class="modal fade" id="modalPromociones" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color: #17202A !important;" id="exampleModalLabel">Promociones
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="color: red !important;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {{-- <h3 class="text-black" style="color: #17202A !important;">{{ var_dump($idNegocio) }}</h3> --}}
+                    <div class="modal-body">
+                        @livewire('promociones.tabla', [
+                            'negocio' => $idNegocio,
+                        ])
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    {{-- SCRIPTS --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/administrar/mapa.js') }}"></script>
@@ -203,6 +231,13 @@
         })
         window.addEventListener('closeAdmModal', event => {
             $('#modalEditar').modal('hide');
+        })
+
+        window.addEventListener('openPromoModal', event => {
+            $('#modalPromociones').modal('show');
+        })
+        window.addEventListener('closePromoModal', event => {
+            $('#modalPromociones').modal('hide');
         })
     </script>
 </div>

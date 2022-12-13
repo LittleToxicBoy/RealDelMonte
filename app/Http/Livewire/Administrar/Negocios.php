@@ -31,6 +31,9 @@ class Negocios extends Component
         if ($tipo == 'editar') {
             $this->dispatchBrowserEvent('openAdmModal');
         }
+        if ($tipo == 'promociones') {
+            $this->dispatchBrowserEvent('openPromoModal');
+        }
     }
 
     public function eliminar()
@@ -38,7 +41,8 @@ class Negocios extends Component
         $imageController  =  new imageController();
         // dd($this->idNegocio);
         if ($this->idNegocio['tipo'] == 'tienda' || $this->idNegocio['tipo'] == 'servicios' || $this->idNegocio['tipo'] == 'transporte') {
-            $delete = ModelsNegocios::find($this->idNegocio['idNegocio']);
+            $delete = ModelsNegocios::where('idNegocio', $this->idNegocio['idNegocio'])->first();
+            // find($this->idNegocio['idNegocio']);
             for ($i = 0; $i < 10; $i++) {
                 $a = $i + 1;
                 $index = 'img' . $a;
