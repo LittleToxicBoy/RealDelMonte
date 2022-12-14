@@ -15,7 +15,21 @@ class TableNegociosSr extends Component
         'refreshEventos' => '$refresh'
     ];
     public $searchTerm = "";
-    public $id_negocio;
+    public $id_negocio, $negocioActivo;
+
+    public function cambiarEstado($id){
+        $negocio = Negocios::find($id);
+        if($negocio->activo == 'si'){
+            $negocio->activo = 'no';
+        }else{
+            $negocio->activo = 'si';
+        }
+        $negocio->save();
+        $this->dispatchBrowserEvent("alert", [
+            "type" => "success",
+            "message" => "Estado cambiado"
+        ]);
+    }
 
     public function agregarNegocio(){
         $this->emit('clear');

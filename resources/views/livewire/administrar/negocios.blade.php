@@ -23,6 +23,7 @@
                         <th class="text-center">Descripcion</th>
                         <th class="text-center">Horario</th>
                         <th class="text-center">Tipo</th>
+                        <th class="text-center">Estado</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -54,13 +55,21 @@
                                 </div>
                             </td>
                             <td>
+                                <div class="text-center">
+                                    <select class="form-control" wire:change="cambiarEstado({{ $negocio->idNegocio }})" name="">
+                                        <option value="si" @if ($negocio->activo == 'si') selected @endif>Si</option>
+                                        <option value="no" @if ($negocio->activo == 'no') selected @endif>No</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <a href="{{ route('negociosAdministrar', ['idNegocio' => $negocio->idNegocio, 'tipo' => $negocio->tipo]) }}"
                                         class="btn btn-info m-0"><i class="ni ni-settings"></i></a>
-                                        
-                                    @if ($negocio->tipo != "showroom")
+
+                                    @if ($negocio->tipo != 'showroom')
                                         <a href="{{ route('negociosPromociones', ['negocio' => $negocio->idNegocio]) }}"
-                                        class="btn btn-success m-0"><i class="fas fa-list-alt"></i></a>
+                                            class="btn btn-success m-0"><i class="fas fa-list-alt"></i></a>
                                     @endif
 
                                     <button wire:click="asignarId({{ $negocio }}, 'eliminar')"
@@ -118,7 +127,8 @@
                     </div>
                     <div class="modal-body">
                         <h5 class="text-center" style="color: #17202A !important;">Deseas eliminar este negocio?</h5>
-                        <p class="text-center" style="color: #17202A !important;">Una vez realizado no se podra revertir
+                        <p class="text-center" style="color: #17202A !important;">Una vez realizado no se podra
+                            revertir
                         </p>
 
                         <div class="d-flex justify-content-center">

@@ -24,5 +24,6 @@ class Pueblo extends Model
         'img9',
         'img10',
         'descripcion',
+        'tiempoPromociones'
     ];
 }

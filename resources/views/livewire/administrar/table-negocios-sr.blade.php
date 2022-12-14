@@ -22,6 +22,7 @@
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Descripcion</th>
                         <th class="text-center">Tipo</th>
+                        <th class="text-center">Estado</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -45,6 +46,14 @@
                                     <div class="">
                                         <h6 class="text-sm mb-0 ">{{ $negocio->tipo }}</h6>
                                     </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <select class="form-control" wire:change="cambiarEstado({{ $negocio->idNegocio }})" name="">
+                                        <option value="si" @if ($negocio->activo == 'si') selected @endif>Si</option>
+                                        <option value="no" @if ($negocio->activo == 'no') selected @endif>No</option>
+                                    </select>
                                 </div>
                             </td>
                             <td>

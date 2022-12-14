@@ -28,6 +28,7 @@ class CreatePueblosTable extends Migration
             $table->string('img8')->nullable();
             $table->string('img9')->nullable();
             $table->string('img10')->nullable();
+            $table->bigInteger('tiempoPromociones')->nullable();
             $table->text('descripcion');
             $table->timestamps();
         });

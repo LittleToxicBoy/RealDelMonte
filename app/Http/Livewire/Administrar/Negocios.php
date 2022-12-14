@@ -14,7 +14,7 @@ class Negocios extends Component
 {
     use WithPagination;
     public $actualId;
-    public $idNegocio;
+    public $idNegocio, $negocioActivo;
     public $searchTerm = "";
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
@@ -34,6 +34,20 @@ class Negocios extends Component
         if ($tipo == 'promociones') {
             $this->dispatchBrowserEvent('openPromoModal');
         }
+    }
+
+    public function cambiarEstado($id){
+        $negocio = ModelsNegocios::find($id);
+        if($negocio->activo == 'si'){
+            $negocio->activo = 'no';
+        }else{
+            $negocio->activo = 'si';
+        }
+        $negocio->save();
+        $this->dispatchBrowserEvent("alert", [
+            "type" => "success",
+            "message" => "Estado cambiado"
+        ]);
     }
 
     public function eliminar()

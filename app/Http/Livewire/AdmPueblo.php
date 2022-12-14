@@ -19,10 +19,11 @@ class AdmPueblo extends Component
         'nombre' => 'required',
         'descripcion' => 'required',
         'imagenes' => 'required',
+        'tiempoPromo' => 'required',
     ];
 
     public $existencia;
-    public $nombre, $descripcion;
+    public $nombre, $descripcion, $tiempoPromo;
 
     public $images = [];
     public $imagenes = [];
@@ -37,6 +38,7 @@ class AdmPueblo extends Component
         if ($this->existencia != null || $this->existencia != "") {
             $this->nombre = $consulta->nombre;
             $this->descripcion = $consulta->descripcion;
+            $this->tiempoPromo = $consulta->tiempoPromociones;
 
             for ($i = 0; $i < 10; $i++) {
                 $a = $i + 1;
@@ -59,6 +61,7 @@ class AdmPueblo extends Component
             'idPueblo' => '1',
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
+            'tiempoPromociones' => $this->tiempoPromo,
         ];
         foreach ($this->imagenes as $key => $image) {
             $imageName = $nameAlt . '-' . $key;
@@ -84,11 +87,13 @@ class AdmPueblo extends Component
         $this->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
+            'tiempoPromo' => 'required',
         ]);
 
         $editar = Pueblo::find('1');
         $editar->nombre = $this->nombre;
         $editar->descripcion = $this->descripcion;
+        $editar->tiempoPromociones = $this->tiempoPromo;
         $editar->save();
 
         $this->dispatchBrowserEvent("alert", [

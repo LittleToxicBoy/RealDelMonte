@@ -28,6 +28,7 @@ class Negocios extends Model
         'img8',
         'img9',
         'img10',
+        'activo',
         'id_negocio_fk'
     ];
 }

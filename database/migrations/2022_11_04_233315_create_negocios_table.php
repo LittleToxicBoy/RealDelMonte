@@ -20,6 +20,7 @@ class CreateNegociosTable extends Migration
             $table->string('longitud');
             $table->string('horarioDes');
             $table->enum('srActivo', ['si', 'no']);
+            $table->enum('activo', ['si', 'no']);
             $table->enum('tipo', ['tienda', 'showroom', 'restaurante', 'recorrido', 'hotel', 'servicios', 'transporte']);
             $table->text('descripcion');
             $table->string('img1')->nullable();
