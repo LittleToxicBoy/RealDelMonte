@@ -4,7 +4,7 @@
             <div class="input-group input-group-alternative mb-4">
                 <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
                 <input wire:model="searchTerm" class="form-control form-control-alternative" placeholder="Search"
-                type="text">
+                    type="text">
             </div>
         </div>
         <div class="card-header pb-0 p-3 bg-red" style="background: #17202A; height: 60px !important;">
@@ -49,8 +49,11 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <button wire:click="editarNegocio({{ $negocio }})"
-                                        class="btn btn-info m-0"><i class="ni ni-settings"></i></button>
+                                    <button wire:click="editarNegocio({{ $negocio }})" class="btn btn-info m-0"><i
+                                            class="ni ni-settings"></i></button>
+
+                                    <a href="{{ route('negociosPromociones', ['negocio' => $negocio->idNegocio]) }}"
+                                        class="btn btn-success m-0"><i class="fas fa-list-alt"></i></a>
 
                                     <button wire:click="eliminarNegocio({{ $negocio->idNegocio }})"
                                         class="btn btn-danger m-0">X</button>
@@ -71,7 +74,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: #17202A !important;">Agregar nuevo negocio
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #17202A !important;">Agregar nuevo
+                        negocio
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

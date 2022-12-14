@@ -58,8 +58,10 @@
                                     <a href="{{ route('negociosAdministrar', ['idNegocio' => $negocio->idNegocio, 'tipo' => $negocio->tipo]) }}"
                                         class="btn btn-info m-0"><i class="ni ni-settings"></i></a>
                                         
-                                    <a href="{{ route('negociosPromociones', ['negocio' => $negocio->idNegocio]) }}"
+                                    @if ($negocio->tipo != "showroom")
+                                        <a href="{{ route('negociosPromociones', ['negocio' => $negocio->idNegocio]) }}"
                                         class="btn btn-success m-0"><i class="fas fa-list-alt"></i></a>
+                                    @endif
 
                                     <button wire:click="asignarId({{ $negocio }}, 'eliminar')"
                                         class="btn btn-danger m-0">X</button </div>
