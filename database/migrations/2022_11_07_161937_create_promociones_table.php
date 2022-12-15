@@ -18,6 +18,8 @@ class CreatePromocionesTable extends Migration
             $table->string('Nombre')->nullable();
             $table->text('descripcion')->nullable();
             $table->string('img1')->nullable();
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
             //FK
             $table->unsignedBigInteger('idNegocio');
             $table->foreign('idNegocio')->references('idNegocio')->on('negocios');

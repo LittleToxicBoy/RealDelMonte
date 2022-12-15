@@ -29,6 +29,18 @@
                     </div>
                 @enderror
 
+                <label style="color: black !important;">
+                    <p class="m-0">Tiempo del modal para mostrar promociones</p>
+                </label>
+                <div class="input-group mb-3">
+                    <input type="number" wire:model="tiempoPromo" class="form-control" placeholder="500">
+                </div>
+                @error('tiempoPromo')
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @enderror
+
                 <div>
                     <label style="color: black !important;">
                         <p class="m-0">Imagenes</p>
